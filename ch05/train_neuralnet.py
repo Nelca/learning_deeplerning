@@ -28,8 +28,8 @@ for i in range(iters_num):
     t_batch = t_train[batch_mask]
     
     # 勾配
-    #grad = network.numerical_gradient(x_batch, t_batch)
-    grad = network.gradient(x_batch, t_batch)
+    grad = network.numerical_gradient(x_batch, t_batch)
+    #grad = network.gradient(x_batch, t_batch)
     
     # 更新
     for key in ('W1', 'b1', 'W2', 'b2'):
