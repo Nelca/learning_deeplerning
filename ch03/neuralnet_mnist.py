@@ -5,7 +5,7 @@ import numpy as np
 import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
-import pdb;
+import pdb
 
 
 def get_data():
@@ -26,8 +26,6 @@ def predict(network, x):
     shape_x = x.shape
     shape_W1 = W1.shape
     shape_b1 = b1.shape
-
-    pdb.set_trace();
 
     a1_dot = np.dot(x, W1)
     a1 = a1_dot + b1
