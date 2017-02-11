@@ -3,7 +3,6 @@ import numpy
 print("hello python")
 print("let's type-> hello()")
 
-
 check_a = numpy.array([1, 2])
 check_b = numpy.array([[1, 2, 3], [4, 5, 6]])
 check_c = numpy.dot(check_a, check_b)
@@ -35,7 +34,7 @@ def checkArray(a, b):
     check_a = np.array([1, 2])
     check_b = np.array([[1, 2, 3], [4, 5, 6]])
     reslt_a = all(a == check_a)
-    reslt_b = all(b == check_b)
+    reslt_b = (b == check_b).all
     if (reslt_a and reslt_b):
         print("Nice!")
         print("So, next step is-> c = np.dot(a, b)")
@@ -51,8 +50,9 @@ def checkResult(c):
     if (all(c == check_c)):
         print("Yeah!! that's great.")
         print("This exercise is end. next is ch03.py")
-        print("type -> exit()")
-        print("and type -> python -i ch03.py")
+        with open("ch03.py") as ch03_f:
+            ch03_code = ch03_f.read()
+            exec(ch03_code)
     else :
         print("Mmmmm something went wrong")
         print("The result is")
