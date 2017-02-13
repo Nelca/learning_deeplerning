@@ -19,6 +19,9 @@ if __name__ == '__main__':
         #sys.stdout.write(line)
         sys.stdout.write('stdout write test')
 
+def relu(x):
+    return np.maximum(0, x)
+
 
 print("")
 print("")
@@ -33,6 +36,9 @@ print("def testFunction() :")
 print("    print (\"Greate!\")")
 print("")
 print("You can now define the function.")
+with open("ch03_1.py") as ch03_1_f:
+    ch03_1_code = ch03_1_f.read()
+        exec(ch03_1_code)
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))    
