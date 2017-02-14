@@ -1,27 +1,5 @@
 import numpy as np
 import sys
-import subprocess
-
-def get_lines(cmd):
-    proc = subprocess.Popen(cmd, shell=True, stdout= subprocess.PIPE, stderr=subprocess.STDOUT)
-
-    while True:
-        line = proc.stdout.readline()
-        if line:
-            yield line
-        if not line and proc.poll() is not None:
-            break
-
-
-if __name__ == '__main__':
-    for line in get_lines(cmd='pwd'):
-        print(line)
-        #sys.stdout.write(line)
-        sys.stdout.write('stdout write test')
-
-def relu(x):
-    return np.maximum(0, x)
-
 
 print("")
 print("")
@@ -34,14 +12,30 @@ print("type this ")
 print("")
 print("def testFunction() :")
 print("    print (\"Greate!\")")
+print("    checkDefFunc()")
 print("")
-print("You can now define the function.")
-with open("ch03_1.py") as ch03_1_f:
-    ch03_1_code = ch03_1_f.read()
-        exec(ch03_1_code)
+print("and type this->testFunction()")
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))    
+
+def relu(x):
+    return np.maximum(0, x)
+
+def checkDefFunc():
+    print("You can now define the function.")
+    print("So next step is check array kyodou ")
+    print("")
+    print("type this-> x = np.array([-1, 1, 2])")
+    print("y = x > 0")
+    print("y")
+    print("")
+    print("")
+    print("Is displayed this ? ")
+    print("array([False, True, True], dtype=bool)")
+    with open("ch03_1.py") as ch03_1_f:
+        ch03_1_code = ch03_1_f.read()
+        exec(ch03_1_code)
 
 
 
