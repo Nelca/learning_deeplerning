@@ -1,4 +1,6 @@
 import numpy
+import myconsole as mc
+
 
 print("hello python")
 print("let's type-> hello()")

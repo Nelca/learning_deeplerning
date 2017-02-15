@@ -33,9 +33,11 @@ class MyConsole(code.InteractiveConsole):
         return ri
 
     def check_input(self, ri):
-        if ri == "hey":
+        if ri == "done_1":
             print("YO!")
 
-my_console = MyConsole()
-my_console.interact("### welcome to custom console!!! ###")
+
+def boot_my_console():
+    my_console = MyConsole()
+    my_console.interact("### welcome to custom console!!! ###")
 
