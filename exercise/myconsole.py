@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #
-
 import sys
 import code
 import readline
@@ -22,19 +21,21 @@ class MyConsole(code.InteractiveConsole):
             except IOError:
                 pass
             atexit.register(self.save_history, histfile)
-            atexit.register(self.checkFunc, histfile)
 
     def save_history(self, histfile):
         readline.write_history_file(histfile)
 
-    def checkFunc(self, histfile):
-        readline.write_history_file(histfile)
+    def raw_input(self, prompt):
+        ri = code.InteractiveConsole.raw_input(self, prompt)
 
-#    def push(self, line):
-#        if line == "nullpo":
-#            print("ga!!!")
+        self.check_input(ri)
 
+        return ri
+
+    def check_input(self, ri):
+        if ri == "hey":
+            print("YO!")
 
 my_console = MyConsole()
-my_console.interact("### welcome to my console!!! ###")
+my_console.interact("### welcome to custom console!!! ###")
 
