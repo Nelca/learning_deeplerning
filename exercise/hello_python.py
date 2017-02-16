@@ -1,7 +1,6 @@
 import numpy
 import myconsole as mc
 
-
 print("hello python")
 print("let's type-> hello()")
 
@@ -61,5 +60,8 @@ def checkResult(c):
         print(c)
         print("So, check and modify.")
         print("and -> checkResult(c)")
+
+#my_console = mc.MyConsole()
+#my_console.interact("### welcome to custom console!!! ###")
 
 #code.InteractiveConsole(globals()).interact()

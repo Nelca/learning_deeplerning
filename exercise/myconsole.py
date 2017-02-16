@@ -27,17 +27,21 @@ class MyConsole(code.InteractiveConsole):
 
     def raw_input(self, prompt):
         ri = code.InteractiveConsole.raw_input(self, prompt)
-
         self.check_input(ri)
-
         return ri
 
+#    def runcode(self, _code):
+#        print("runcode")
+#        rc = code.InteractiveConsole.runcode(self, _code)
+#        print("/runcode")
+#
+#        return rc
+
     def check_input(self, ri):
-        if ri == "done_1":
+        if ri == "hey":
             print("YO!")
 
 
-def boot_my_console():
-    my_console = MyConsole()
-    my_console.interact("### welcome to custom console!!! ###")
+my_console = MyConsole()
+my_console.interact("### welcome to my console!!! ###")
 
