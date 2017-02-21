@@ -9,8 +9,6 @@ import os
 
 class MyConsole(code.InteractiveConsole):
 
-    a = 1
-
     def __init__(self, local=None, filename="<console>",
             histfile=os.path.expanduser("~/.console-history")):
         code.InteractiveConsole.__init__(self, local, filename)
@@ -38,8 +36,15 @@ class MyConsole(code.InteractiveConsole):
             print("YO!")
 
 my_console = MyConsole()
+f = open('runsource_test.py')
+lines = f.readlines()
+f.close()
+ 
+for line in lines:
+    my_console.runsource(line)
 
-my_console.runsource("import runsource_test as rt")
+#my_console.runsource("import runsource_test as rt")
+#my_console.runcode("import runsource_test as rt")
 
 my_console.interact("### welcome to my console!!! ###")
 
