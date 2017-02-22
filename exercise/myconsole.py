@@ -36,15 +36,19 @@ class MyConsole(code.InteractiveConsole):
             print("YO!")
 
 my_console = MyConsole()
+
 f = open('runsource_test.py')
+#compiled_file = compile(f, filename='runsource_test.py', mode='exec')
 lines = f.readlines()
-f.close()
- 
+
+str_source = ""
 for line in lines:
-    my_console.runsource(line)
+    str_source = str_source + line + "\n"
+
+compiled_file = compile(str_source, filename='runsource_test.py', mode='exec')
+my_console.runsource(compiled_file)
+f.close()
 
 #my_console.runsource("import runsource_test as rt")
-#my_console.runcode("import runsource_test as rt")
-
 my_console.interact("### welcome to my console!!! ###")
 
