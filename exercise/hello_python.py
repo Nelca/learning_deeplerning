@@ -61,7 +61,4 @@ def checkResult(c):
         print("So, check and modify.")
         print("and -> checkResult(c)")
 
-#my_console = mc.MyConsole()
-#my_console.interact("### welcome to custom console!!! ###")
 
-#code.InteractiveConsole(globals()).interact()

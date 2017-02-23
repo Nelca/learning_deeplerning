@@ -39,15 +39,17 @@ my_console = MyConsole()
 
 f = open('runsource_test.py')
 lines = f.readlines()
-f.close()
 
 str_source = ""
 for line in lines:
+    str_source_with_n = str_source + line + "\n"
     str_source = str_source + line
+    #my_console.runsource(line)
 
-my_console.runsource(str_source)
-#my_console.runsource("def test_func():    print('check_rs')")
-#my_console.runsource("test_func()")
+compiled_file = code.compile_command(str_source)
+my_console.runsource(compiled_file)
+#compiled_file = code.compile_command(str_source)
+f.close()
 
 #my_console.runsource("import runsource_test as rt")
 my_console.interact("### welcome to my console!!! ###")
