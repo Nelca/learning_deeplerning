@@ -42,10 +42,14 @@ lines = f.readlines()
 f.close()
 
 str_source = ""
+i = 0
 for line in lines:
+    i = i + 1
+    print(line)
+    print(i)
     str_source = str_source + line
 
-my_console.runsource(str_source)
+#my_console.runsource(str_source)
 #my_console.runsource("def test_func():    print('check_rs')")
 #my_console.runsource("test_func()")
 
