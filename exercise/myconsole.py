@@ -37,22 +37,17 @@ class MyConsole(code.InteractiveConsole):
 
 my_console = MyConsole()
 
-f = open('runsource_test.py')
-lines = f.readlines()
+f = open('runsource_test.py', )
+file_contents = f.read()
 f.close()
 
-str_source = ""
-i = 0
-for line in lines:
-    i = i + 1
-    print(line)
-    print(i)
-    str_source = str_source + line
+test_str = '''
+def test_func():
+    print("chk")
 
-#my_console.runsource(str_source)
-#my_console.runsource("def test_func():    print('check_rs')")
-#my_console.runsource("test_func()")
+'''
 
-#my_console.runsource("import runsource_test as rt")
+#my_console.runsource(file_contents)
+
 my_console.interact("### welcome to my console!!! ###")
 

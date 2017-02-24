@@ -1,7 +1,7 @@
 import numpy
-import myconsole as mc
 
 print("hello python")
+
 print("let's type-> hello()")
 
 check_a = numpy.array([1, 2])
