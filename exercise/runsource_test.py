@@ -8,8 +8,11 @@ b = np.array([[1, 2, 3], [4, 5, 6]])
 c = np.dot(a, b)
 
 def print_func():
-    print("print_func")
+    print("yes, it's print_func")
 
 
 def print_func_with_arg(a):
     print(a)
+
+def q_init():
+    print("it's init question file")

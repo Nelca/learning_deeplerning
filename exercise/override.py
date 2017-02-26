@@ -1,3 +1,4 @@
+import os
 import myconsole as mc
 
 
@@ -17,5 +18,5 @@ class orMc(mc.MyConsole):
 
 
 
-or_my_console = orMc()
+or_my_console = orMc(question_file=os.path.join(os.path.dirname(__file__), "runsource_test.py"))
 or_my_console.interact("### welcome override console!!! ###")

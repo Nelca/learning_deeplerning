@@ -10,9 +10,15 @@ import os
 class MyConsole(code.InteractiveConsole):
 
     def __init__(self, local=None, filename="<console>",
-            histfile=os.path.expanduser("~/.console-history")):
+            histfile=os.path.expanduser("~/.console-history"),
+            question_file=os.path.join(os.path.dirname(__file__), "empty_question_file.py")):
+
         code.InteractiveConsole.__init__(self, local, filename)
+
         self.init_history(histfile)
+        f = open(question_file)
+        self.runsource(f.read(), symbol='exec')
+        f.close()
 
     def init_history(self, histfile):
         readline.parse_and_bind("tab: complete")
@@ -35,19 +41,6 @@ class MyConsole(code.InteractiveConsole):
         if ri == "hey":
             print("YO!")
 
-my_console = MyConsole()
-
-f = open('runsource_test.py', )
-file_contents = f.read()
-f.close()
-
-test_str = '''
-def test_func():
-    print("chk")
-
-'''
-
-#my_console.runsource(file_contents)
-
-my_console.interact("### welcome to my console!!! ###")
+#my_console = MyConsole()
+#my_console.interact("### welcome to my console!!! ###")
 
