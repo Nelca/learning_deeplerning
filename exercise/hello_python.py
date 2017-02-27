@@ -1,7 +1,6 @@
 import numpy
 
-print("hello python")
-
+print("hello.")
 print("let's type-> hello()")
 
 check_a = numpy.array([1, 2])
@@ -16,7 +15,6 @@ def hello(name=""):
         print("Hello " + name + " !!")
         print("OK. Next step")
         print("Type this-> import numpy as np")
-        print("and type this->checkNumpy() ")
 
 def checkNumpy():
     try:

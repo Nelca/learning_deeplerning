@@ -41,6 +41,3 @@ class MyConsole(code.InteractiveConsole):
         if ri == "hey":
             print("YO!")
 
-#my_console = MyConsole()
-#my_console.interact("### welcome to my console!!! ###")
-
