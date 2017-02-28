@@ -28,5 +28,5 @@ class Mc(mc.MyConsole):
 
 
 
-hello_my_console = Mc(question_file=os.path.join(os.path.dirname(__file__), "hello_python.py"))
+hello_my_console = Mc(question_file=os.path.join(os.path.dirname(__file__), "ch03.py"))
 hello_my_console.interact("### welcome python !!! ###")

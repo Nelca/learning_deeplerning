@@ -30,8 +30,8 @@ def checkNumpy():
         print("and type this->checkNumpy() ")
 
 def checkArray(a, b):
-    check_a = np.array([1, 2])
-    check_b = np.array([[1, 2, 3], [4, 5, 6]])
+    #check_a = np.array([1, 2])
+    #check_b = np.array([[1, 2, 3], [4, 5, 6]])
     reslt_a = all(a == check_a)
     reslt_b = (b == check_b).all
     if (reslt_a and reslt_b):
@@ -43,7 +43,6 @@ def checkArray(a, b):
         print("Check this-> a = np.array([1, 2])")
         print("and check this-> b = np.array([[1, 2, 3], [4, 5, 6]])")
         print("Or do this-> print(a)")
-        print("at last retype checkArray(a, b)")
 
 def checkResult(c):
     if (all(c == check_c)):

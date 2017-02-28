@@ -37,5 +37,3 @@ def checkDefFunc():
         ch03_1_code = ch03_1_f.read()
         exec(ch03_1_code)
 
-
-
