@@ -19,6 +19,12 @@ class Mc(mc.MyConsole):
         elif ri == "sig_a_exp = np.exp(sig_a_exp)":
             print("Good good good.")
             print("print(a_exp)")
+        elif ri == "y":
+            print("Is displayed this ? ")
+            print("array([False, True, True], dtype=bool)")
+            print("So, let's next chapter.")
+            print("type this -> nextCh()")
+            nextCh()
 
     def check_result_1(self, ri):
         if ri == "chk1":

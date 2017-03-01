@@ -29,11 +29,10 @@ def checkDefFunc():
     print("type this-> x = np.array([-1, 1, 2])")
     print("y = x > 0")
     print("y")
-    print("")
-    print("")
-    print("Is displayed this ? ")
-    print("array([False, True, True], dtype=bool)")
+
+def nextCh() :
     with open("ch03_1.py") as ch03_1_f:
         ch03_1_code = ch03_1_f.read()
         exec(ch03_1_code)
+
 
