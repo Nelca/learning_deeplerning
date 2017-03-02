@@ -7,12 +7,19 @@ import readline
 import atexit
 import os
 
-class MyConsole(code.InteractiveConsole):
+class CustomConsole(code.InteractiveConsole):
 
     def __init__(self, local=None, filename="<console>",
-            histfile=os.path.expanduser("~/.console-history")):
+            histfile=os.path.expanduser("~/.console-history"),
+            question_file=os.path.join(os.path.dirname(__file__), "empty_question_file.py")):
+
         code.InteractiveConsole.__init__(self, local, filename)
+
         self.init_history(histfile)
+
+        f = open(question_file)
+        self.runsource(f.read(), symbol='exec')
+        f.close()
 
     def init_history(self, histfile):
         readline.parse_and_bind("tab: complete")
@@ -28,29 +35,10 @@ class MyConsole(code.InteractiveConsole):
 
     def raw_input(self, prompt):
         ri = code.InteractiveConsole.raw_input(self, prompt)
-        self.check_input(ri)
-        return ri
+        return self.check_input(ri)
 
     def check_input(self, ri):
         if ri == "hey":
             print("YO!")
-
-my_console = MyConsole()
-
-f = open('runsource_test.py')
-lines = f.readlines()
-
-str_source = ""
-for line in lines:
-    str_source_with_n = str_source + line + "\n"
-    str_source = str_source + line
-    #my_console.runsource(line)
-
-compiled_file = code.compile_command(str_source)
-my_console.runsource(compiled_file)
-#compiled_file = code.compile_command(str_source)
-f.close()
-
-#my_console.runsource("import runsource_test as rt")
-my_console.interact("### welcome to my console!!! ###")
+        return ri
 

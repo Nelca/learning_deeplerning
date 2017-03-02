@@ -20,22 +20,26 @@ def checkNumpy():
     try:
         if np :
             print("Good !! Now numpy is avaiabble.")
-            print("So let's do next step is")
-            print("type this-> a = np.array([1, 2])")
-            print("and type this-> b = np.array([[1, 2, 3], [4, 5, 6]])")
-            print("and type this->checkArray(a, b) ")
+            print("So let's do next step.")
+            print("Type is ->")
+            print("a = np.array([1, 2])")
+            print("b = np.array([[1, 2, 3], [4, 5, 6]])")
+            print("checkArray(a, b) ")
     except NameError:
         print("Ooops numpy is not imported.")
         print("Re type this-> import numpy as np")
         print("and type this->checkNumpy() ")
 
 def checkArray(a, b):
-    #check_a = np.array([1, 2])
-    #check_b = np.array([[1, 2, 3], [4, 5, 6]])
     reslt_a = all(a == check_a)
     reslt_b = (b == check_b).all
     if (reslt_a and reslt_b):
         print("Nice!")
+        print("")
+        print("So, let's confrim numpy.")
+        print("")
+        print("Type this -> print(a)")
+        print("")
         print("So, next step is-> c = np.dot(a, b)")
         print("and -> checkResult(c)")
     else:
@@ -48,7 +52,7 @@ def checkResult(c):
     if (all(c == check_c)):
         print("Yeah!! that's great.")
         print("This exercise is end. next is ch03.py")
-        with open("ch03.py") as ch03_f:
+        with open("ch03_functions.py") as ch03_f:
             ch03_code = ch03_f.read()
             exec(ch03_code)
     else :

@@ -1,38 +1,22 @@
-import numpy as np
-import sys
+import os
+import customconsole as cc
 
-print("")
-print("")
-print("")
-print("Hello. This section is lerning activation function.")
-print("")
-print("First of all, let's  define a test function.")
-print("Be careful whith indentation.")
-print("type this ")
-print("")
-print("def testFunction() :")
-print("    print (\"Greate!\")")
-print("    checkDefFunc()")
-print("")
-print("and type this->testFunction()")
 
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))    
+class CustomConsole(cc.CustomConsole):
+    def check_input(self, ri):
+        if ri == "sig_a = np.array([1, 2, 3])":
+            print("That's it.")
+            print("So next type this-> sig_a_exp = np.exp(sig_a_exp)")
+        elif ri == "sig_a_exp = np.exp(sig_a_exp)":
+            print("Good good good.")
+            print("print(a_exp)")
+        elif ri == "y":
+            print("Is displayed this ? ")
+            print("array([False, True, True], dtype=bool)")
+            print("So, let's next chapter.")
+            print("type this -> nextCh()")
+        return ri
 
-def relu(x):
-    return np.maximum(0, x)
-
-def checkDefFunc():
-    print("You can now define the function.")
-    print("So next step is check array kyodou ")
-    print("")
-    print("type this-> x = np.array([-1, 1, 2])")
-    print("y = x > 0")
-    print("y")
-
-def nextCh() :
-    with open("ch03_1.py") as ch03_1_f:
-        ch03_1_code = ch03_1_f.read()
-        exec(ch03_1_code)
-
+ch03_console = CustomConsole(question_file=os.path.join(os.path.dirname(__file__), "ch03_functions.py"))
+ch03_console.interact("### welcome chapter 3 !!! ###")
 
