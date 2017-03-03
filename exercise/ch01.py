@@ -14,8 +14,7 @@ class CustomConsole(cc.CustomConsole):
             print("")
             print("Gooood!")
             print("Check the define array")
-            print("type this ->")
-            print("checkArray(a, b)")
+            self.runsource("checkArray(a, b)")
             print("")
         elif ri == "b":
             print("")

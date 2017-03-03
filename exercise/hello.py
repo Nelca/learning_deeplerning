@@ -1,6 +1,6 @@
+# This file is chapter 1 exercise.
 import os
 import customconsole as cc
-
 
 class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
