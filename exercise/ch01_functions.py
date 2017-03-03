@@ -14,9 +14,29 @@ def hello(name=""):
     else:
         print("Hello " + name + " !!")
         print("OK. Next step")
-        print("Type this-> import numpy as np")
+        print("Type this->")
+        print("import numpy as np")
+
+def checkArray(a, b):
+    reslt_a = all(a == check_a)
+    reslt_b = (b == check_b).all
+    if (reslt_a and reslt_b):
+        print("")
+        print("Nice!")
+        print("")
+        print("So let's calc array.")
+        print("")
+        print("type this ")
+        print("b")
+    else:
+        print("Ooops somethin went wrong")
+        print("Check this-> a = np.array([1, 2])")
+        print("and check this-> b = np.array([[1, 2, 3], [4, 5, 6]])")
 
 
 
-
+def nextChapter():
+    with open("ch02_functions.py") as next_chapter:
+        next_code = next_chapter.read()
+        exec(next_code)
 
