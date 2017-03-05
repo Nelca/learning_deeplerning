@@ -11,12 +11,15 @@ class CustomConsole(cc.CustomConsole):
             print("b = np.array([[1, 2, 3], [4, 5, 6]])")
             print("")
         elif ri == "b = np.array([[1, 2, 3], [4, 5, 6]])" or ri == "b=np.array([[1,2,3],[4,5,6]])" :
+            self.runsource(ri)
             print("")
             print("Gooood!")
             print("Check the define array")
             self.runsource("checkArray(a, b)")
             print("")
         elif ri == "b":
+            self.runsource(ri)
+            ri = ""
             print("")
             print("Good!")
             print("Checking calc result above.")
@@ -25,12 +28,16 @@ class CustomConsole(cc.CustomConsole):
             print("b + 3")
             print("")
         elif ri == "b + 3":
+            self.runsource(ri)
+            ri = ""
             print("")
             print("Nice!")
             print("So next step is type this ->")
             print("b - 3")
             print("")
         elif ri == "b - 3":
+            self.runsource(ri)
+            ri = ""
             print("")
             print("That's it!")
             print("So next step is type this ->")
@@ -43,6 +50,8 @@ class CustomConsole(cc.CustomConsole):
             print("c")
             print("")
         elif ri == "c":
+            self.runsource(ri)
+            ri = ""
             print("")
             print("Nice")
             print("")
