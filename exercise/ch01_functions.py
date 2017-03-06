@@ -23,6 +23,7 @@ def checkArray(a, b):
     if (reslt_a and reslt_b):
         print("")
         print("Nice!")
+        print("Variables is collect.")
         print("")
         print("So let's calc array.")
         print("")
@@ -30,8 +31,9 @@ def checkArray(a, b):
         print("b")
     else:
         print("Ooops somethin went wrong")
-        print("Check this-> a = np.array([1, 2])")
-        print("and check this-> b = np.array([[1, 2, 3], [4, 5, 6]])")
+        print("Check this->")
+        print("a = np.array([1, 2])")
+        print("b = np.array([[1, 2, 3], [4, 5, 6]])")
 
 
 
