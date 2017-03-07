@@ -38,7 +38,7 @@ def checkArray(a, b):
 
 
 def nextChapter():
-    with open("ch02_functions.py") as next_chapter:
+    with open("ch02.py") as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
 

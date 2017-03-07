@@ -30,5 +30,5 @@ class CustomConsole(cc.CustomConsole):
             self.runsource("checkNumpy()")
         return ri
 
-hello_my_console = CustomConsole(question_file=os.path.join(os.path.dirname(__file__), "hello_functions.py"))
+hello_my_console = CustomConsole(question_file="./hello_functions.py")
 hello_my_console.interact("### welcome python !!! ###")

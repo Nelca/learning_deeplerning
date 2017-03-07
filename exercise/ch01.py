@@ -88,5 +88,5 @@ class CustomConsole(cc.CustomConsole):
             print("")
         return ri
 
-ch01_console = CustomConsole(question_file=os.path.join(os.path.dirname(__file__), "ch01_functions.py"))
+ch01_console = CustomConsole(question_file="./ch01_functions.py")
 ch01_console.interact("### welcome chapter 1 ###")
