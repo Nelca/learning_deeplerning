@@ -1,4 +1,3 @@
-import os
 import customconsole as cc
 
 class CustomConsole(cc.CustomConsole):
@@ -28,12 +27,29 @@ class CustomConsole(cc.CustomConsole):
            print("")
            print("Nand gate is ->")
            print("")
+           print("def NAND(x1, x2):")
+           print("   x = np.array([x1, x2])")
+           print("   w = np.array([-0.5, -0.5])")
+           print("   b = 0.7")
+           print("   tmp = np.sum(w*x) + b")
+           print("   if tmp <= 0:")
+           print("       return 0")
+           print("   else:")
+           print("       return 1")
            print("")
            print("")
+        elif replaced_ri == "hint_or_gate" :
            print("")
            print("")
-           print("")
-           print("")
+           print("def collect_OR(x1, x2):")
+           print("    x = np.array([x1, x2])")
+           print("    w = np.array([0.5, 0.5])")
+           print("    b = -0.2")
+           print("    tmp = np.sum(w*x) + b")
+           print("    if tmp <= 0:")
+           print("        return 0")
+           print("    else:")
+           print("        return 1")
            print("")
            print("")
         return ri
