@@ -25,7 +25,9 @@ class CustomConsole(cc.CustomConsole):
            print("")
         elif replaced_ri == "hint_nand_gate" :
            print("")
-           print("Nand gate is ->")
+           print("OK! Give you a hint.")
+           print("")
+           print("NAND gate is ->")
            print("")
            print("def NAND(x1, x2):")
            print("   x = np.array([x1, x2])")
@@ -40,8 +42,11 @@ class CustomConsole(cc.CustomConsole):
            print("")
         elif replaced_ri == "hint_or_gate" :
            print("")
+           print("OK! Give you a hint.")
            print("")
-           print("def collect_OR(x1, x2):")
+           print("OR gate is ->")
+           print("")
+           print("def OR(x1, x2):")
            print("    x = np.array([x1, x2])")
            print("    w = np.array([0.5, 0.5])")
            print("    b = -0.2")
@@ -51,6 +56,16 @@ class CustomConsole(cc.CustomConsole):
            print("    else:")
            print("        return 1")
            print("")
+           print("")
+        elif replaced_ri == "hint_xor_gate" :
+           print("")
+           print("XOR gate is ->")
+           print("")
+           print("def XOR(x1, x2):")
+           print("    s1 = NAND(x1, x2)")
+           print("    s2 = OR(x1, x2)")
+           print("    y = AND(s1, s2)")
+           print("    return y")
            print("")
         return ri
 

@@ -4,6 +4,11 @@ check_a = np.array([1, 2])
 check_b = np.array([[1, 2, 3], [4, 5, 6]])
 check_c = np.dot(check_a, check_b)
 
+hint_and_gate = ''
+hint_nand_gate = ''
+hint_or_gate = ''
+hint_xor_gate = ''
+
 print("")
 print("*************************************")
 print("")
@@ -50,15 +55,16 @@ def collect_OR(x1, x2):
     else:
         return 1
 
-if __name__ == '__main__':
-    for xs in [(0, 0), (1, 0), (0, 1), (1, 1)]:
-        y = OR(xs[0], xs[1])
-        print(str(xs) + " -> " + str(y))
+def collect_XOR(x1, x2):
+    s1 = collect_NAND(x1, x2)
+    s2 = collect_OR(x1, x2)
+    y = collect_AND(s1, s2)
+    return y
 
 def checkAndGate(x1, x2):
     chk_result = AND(x1, x2)
     colletct_result = collect_AND(x1, x2)
-    result = all(chk_result == colletct_result)
+    result = (chk_result == colletct_result).all
     if result:
         print("")
         print("OK!!")
@@ -74,7 +80,17 @@ def checkAndGate(x1, x2):
         print("")
     else:
         print("")
-        print("NG")
+        print("Mmmm result is not much.")
+        print("")
+        print("See results of your define function.")
+        viewGateResults(AND)
+        print("")
+        print("And collect result is this->")
+        print("")
+        viewGateResults(collect_AND)
+        print("")
+        print("")
+        print("hint is type this -> hint_nand_gate")
         print("")
 
 
@@ -100,6 +116,56 @@ def checkNandGate(x1, x2):
         print("NG")
         print("hint is type this -> hint_nand_gate")
         print("")
+
+def checkOrGate(x1, x2):
+    chk_result = OR(x1, x2)
+    colletct_result = collect_OR(x1, x2)
+    result = all(chk_result == colletct_result)
+    if result:
+        print("")
+        print("Good!!")
+        print("")
+        print("Next is XOR gate.")
+        print("XOR gate needs multi layer perceptron.")
+        print("")
+        print("Let's define the 'XOR' gate.")
+        print("")
+        print("XOR gate is combination of ")
+        print("")
+        print("hint is type this -> hint_xor_gate")
+        print("")
+        print("and check the function this -> checkXorGate(1, 2)")
+        print("")
+        print("")
+        print("")
+        print("")
+    else:
+        print("")
+        print("Oooops result is not collect.")
+        print("hint is type this -> hint_xor_gate")
+        print("")
+
+def checkXorGate(x1, x2):
+    chk_result = XOR(x1, x2)
+    colletct_result = collect_XOR(x1, x2)
+    result = all(chk_result == colletct_result)
+    if result:
+        print("")
+        print("Nice!!")
+        print("")
+        print("")
+        print("Let's move next chapter--3.")
+        print("")
+        print("")
+    else:
+        print("")
+        print("NG....")
+        print("")
+
+def viewGateResults(gate_function):
+    for xs in [(0, 0), (1, 0), (0, 1), (1, 1)]:
+        y = gate_function(xs[0], xs[1])
+        print(str(xs) + " -> " + str(y))
 
 def nextChapter():
     with open("ch03.py") as next_chapter:
