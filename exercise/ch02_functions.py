@@ -1,29 +1,9 @@
 import numpy as np
 
-check_a = np.array([1, 2])
-check_b = np.array([[1, 2, 3], [4, 5, 6]])
-check_c = np.dot(check_a, check_b)
-
 hint_and_gate = ''
 hint_nand_gate = ''
 hint_or_gate = ''
 hint_xor_gate = ''
-
-print("")
-print("*************************************")
-print("")
-print("This chapter lern about perceptron.")
-print("")
-print("Basic perceptron petern is and gate.")
-print("")
-print("Let's define the And gate perceptron as 'AND' function.")
-print("")
-print("")
-print("")
-print("hint is type this -> hint_and_gate")
-print("")
-print("and check the function this -> checkAndGate(1, 2)")
-print("")
 
 def collect_AND(x1, x2):
     x = np.array([x1, x2])
@@ -61,22 +41,40 @@ def collect_XOR(x1, x2):
     y = collect_AND(s1, s2)
     return y
 
-def checkAndGate(x1, x2):
-    chk_result = AND(x1, x2)
-    colletct_result = collect_AND(x1, x2)
-    result = (chk_result == colletct_result).all
-    if result:
+def printInitialMessage():
+    print("")
+    print("*************************************")
+    print("")
+    print("This chapter lern about perceptron.")
+    print("")
+    print("Basic perceptron petern is and gate.")
+    print("")
+    print("Let's define the And gate perceptron as 'AND' function.")
+    print("")
+    print("")
+    print("")
+    print("hint is type this -> hint_and_gate")
+    print("")
+    print("and check the function this -> checkAndGate()")
+    print("")
+
+def checkAndGate():
+    chk_result = getGateResults(AND)
+    colletct_result = getGateResults(collect_AND)
+    if chk_result == colletct_result:
         print("")
         print("OK!!")
         print("")
-        print("And gate is define.")
+        print("And gate is define as above.")
+        print("")
+        viewGateResults(AND)
         print("")
         print("Next is Nand gate.")
         print("So deifne the 'NAND' function.")
         print("")
         print("hint is type this -> hint_nand_gate")
         print("")
-        print("and check the function this -> checkNandGate(1, 2)")
+        print("and check the function this -> checkNandGate()")
         print("")
     else:
         print("")
@@ -94,36 +92,48 @@ def checkAndGate(x1, x2):
         print("")
 
 
-def checkNandGate(x1, x2):
-    chk_result = NAND(x1, x2)
-    colletct_result = collect_NAND(x1, x2)
-    result = all(chk_result == colletct_result)
-    if result:
+def checkNandGate():
+    chk_result = getGateResults(NAND)
+    colletct_result = getGateResults(collect_NAND)
+    if chk_result == colletct_result:
         print("")
         print("OK!!")
         print("")
-        print("Nand gate is define.")
+        print("Nand gate is define as above.")
+        print("")
+        viewGateResults(NAND)
         print("")
         print("Next is OR gate.")
         print("So deifne the 'OR' function.")
         print("")
         print("hint is type this -> hint_or_gate")
         print("")
-        print("and check the function this -> checkOrGate(1, 2)")
+        print("and check the function this -> checkOrGate()")
         print("")
     else:
         print("")
-        print("NG")
+        print("NG...")
         print("hint is type this -> hint_nand_gate")
         print("")
+        print("See results of your define function.")
+        viewGateResults(NAND)
+        print("")
+        print("And collect result is this->")
+        print("")
+        viewGateResults(collect_NAND)
+        print("")
+        print("")
 
-def checkOrGate(x1, x2):
-    chk_result = OR(x1, x2)
-    colletct_result = collect_OR(x1, x2)
-    result = all(chk_result == colletct_result)
-    if result:
+def checkOrGate():
+    chk_result = getGateResults(OR)
+    colletct_result = getGateResults(collect_OR)
+    if chk_result == colletct_result:
         print("")
         print("Good!!")
+        print("")
+        print("OR gate is define as above.")
+        print("")
+        viewGateResults(OR)
         print("")
         print("Next is XOR gate.")
         print("XOR gate needs multi layer perceptron.")
@@ -134,9 +144,7 @@ def checkOrGate(x1, x2):
         print("")
         print("hint is type this -> hint_xor_gate")
         print("")
-        print("and check the function this -> checkXorGate(1, 2)")
-        print("")
-        print("")
+        print("and check the function this -> checkXorGate()")
         print("")
         print("")
     else:
@@ -144,32 +152,59 @@ def checkOrGate(x1, x2):
         print("Oooops result is not collect.")
         print("hint is type this -> hint_xor_gate")
         print("")
+        print("See results of your define function.")
+        viewGateResults(OR)
+        print("")
+        print("And collect result is this->")
+        print("")
+        viewGateResults(collect_OR)
+        print("")
+         print("")
 
-def checkXorGate(x1, x2):
-    chk_result = XOR(x1, x2)
-    colletct_result = collect_XOR(x1, x2)
-    result = all(chk_result == colletct_result)
-    if result:
+def checkXorGate():
+    chk_result = getGateResults(XOR)
+    colletct_result = getGateResults(collect_XOR)
+    if chk_result == colletct_result:
         print("")
         print("Nice!!")
         print("")
+        print("XOR gate is define as above.")
+        print("")
+        viewGateResults(XOR)
         print("")
         print("Let's move next chapter--3.")
         print("")
+        nextChapter()
         print("")
     else:
         print("")
         print("NG....")
         print("")
+        print("See results of your define function.")
+        viewGateResults(XOR)
+        print("")
+        print("And collect result is this->")
+        print("")
+        viewGateResults(collect_XOR)
+        print("")
+        print("")
 
-def viewGateResults(gate_function):
+def getGateResults(gate_function):
+    results = {}
     for xs in [(0, 0), (1, 0), (0, 1), (1, 1)]:
         y = gate_function(xs[0], xs[1])
-        print(str(xs) + " -> " + str(y))
+        results[str(xs)] = y
+    return results
+
+def viewGateResults(gate_function):
+    results = getGateResults(gate_function)
+    for k, v in results.items():
+        print(k + " -> " + str(v))
 
 def nextChapter():
     with open("ch03.py") as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
 
+printInitialMessage()
 
