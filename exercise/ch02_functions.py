@@ -49,6 +49,9 @@ def printInitialMessage():
     print("")
     print("Basic perceptron petern is and gate.")
     print("")
+    print("And gate is above.")
+    viewGateResults(collect_AND)
+    print("")
     print("Let's define the And gate perceptron as 'AND' function.")
     print("")
     print("")
@@ -159,7 +162,7 @@ def checkOrGate():
         print("")
         viewGateResults(collect_OR)
         print("")
-         print("")
+        print("")
 
 def checkXorGate():
     chk_result = getGateResults(XOR)

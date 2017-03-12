@@ -17,6 +17,6 @@ class CustomConsole(cc.CustomConsole):
             print("type this -> nextCh()")
         return ri
 
-ch03_console = CustomConsole(question_file=os.path.join(os.path.dirname(__file__), "ch03_functions.py"))
+ch03_console = CustomConsole(question_file= "./ch03_functions.py")
 ch03_console.interact("### welcome chapter 3 !!! ###")
 
