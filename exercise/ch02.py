@@ -3,12 +3,7 @@ import customconsole as cc
 class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
         replaced_ri = ri.replace(" ", "")
-        if ri == "import numpy as np":
-            print("")
-        elif replaced_ri == "b=np.array([[1,2,3],[4,5,6]])" :
-           print("")
-           print("")
-        elif replaced_ri == "hint_and_gate" :
+        if replaced_ri == "hint_and_gate" :
            print("")
            print("and gate is")
            print("")
