@@ -8,7 +8,7 @@ def printInitialMessage():
     print("")
     print("First step is define numpy array as follows.")
     print("")
-    print("a = np.array([1, 2, 3, 4])")
+    print("a = np.array([1, 2])")
     print("")
 
 def nextChapter(file_name="ch03_2.py"):
