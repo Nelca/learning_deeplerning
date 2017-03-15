@@ -117,7 +117,35 @@ class CustomConsole(cc.CustomConsole):
             print("y = sigmoid(N1)")
             print("")
             print("")
-        elif ri == "hint":
+        elif replaced_ri == "y=sigmoid(N1)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("Okay, next is last activation function.")
+            print("")
+            print("Before you define last layer.")
+            print("")
+            print("N2 = np.dot(y, w) + b")
+            print("")
+        elif replaced_ri == "N2=np.dot(y,w)+b":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("That's it!!")
+            print("And last activation function is identity funtion.")
+            print("")
+            print("Let's define 'identity_function'.")
+            print("and check defined function as follow")
+            print("checkIdf()")
+            print("")
+            print("If you want hint, type this -> hint_idf")
+            print("")
+        elif ri == "hint_idf":
+            print("")
+            print("Identity function is defined as follows.")
+            print("")
+            print("def identity_function(x):")
+            print("    return x")
             print("")
         return ri
 
