@@ -40,7 +40,6 @@ def checkIdf():
         print("")
     else:
         print("")
-        print("NG")
         print("Mmmmm define function is not collect.")
         print("Check the function name as 'identity_function'")
         print("If you want hint, type this -> hint_idf")
@@ -52,13 +51,17 @@ def checkSoftmax():
     collect_result = collect_softmax(chk_val)
     if all(result == collect_result):
         print("")
-        print("OK")
+        print("Goooodd!!")
+        print("So, check the softmax results.")
+        print("type tihs->")
+        print("softmax(N2)")
         print("")
     else:
         print("")
-        print("NG")
+        print("Mmmmm define function is not collect.")
+        print("Check the function name as 'softmax'")
+        print("If you want hint, type this -> hint_softmax")
         print("")
-
 
 def nextChapter(file_name="ch03_2.py"):
     with open(file_name) as next_chapter:

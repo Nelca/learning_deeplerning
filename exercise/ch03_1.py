@@ -1,6 +1,5 @@
 import customconsole as cc
 
-
 class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
         replaced_ri = ri.replace(" ", "")
@@ -181,9 +180,30 @@ class CustomConsole(cc.CustomConsole):
             print("        y = np.exp(x) / np.sum(np.exp(x), axis=0)")
             print("        return y.T ")
             print("")
-            print("    x = x - np.max(x) # オーバーフロー対策")
+            print("    x = x - np.max(x)")
             print("    return np.exp(x) / np.sum(np.exp(x))")
             print("")
+        elif replaced_ri == "softmax(N2)":
+            print("")
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("That's it!!")
+            print("And an important feature of softmax is that the output is real number from 0 to 1.0.")
+            print("")
+            print("Check the above results.type this->")
+            print("chk = softmax(N2)")
+            print("np.sum(chk)")
+            print("")
+        elif replaced_ri == "np.sum(chk)":
+            print("")
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("That's gooood!!")
+            print("Well, next time you will make MNIST discirimination.")
+            print("")
+            nextChapter()
         return ri
 
 ch03_1_console = CustomConsole(question_file= "./ch03_1_functions.py")
