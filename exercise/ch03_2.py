@@ -3,7 +3,16 @@ import customconsole as cc
 class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
         replaced_ri = ri.replace(" ", "")
-        if replaced_ri == "a=np.array([1,2])":
+        if replaced_ri == "x,t=get_data()":
+            print("")
+            print("Nice.")
+            print("this variable data is")
+            print("x:is train data")
+            print("t:is test data")
+            print("")
+            print("So checking the mnist datas.")
+            print("")
+            print("")
             print("")
         elif replaced_ri == "np.sum(chk)":
             print("")

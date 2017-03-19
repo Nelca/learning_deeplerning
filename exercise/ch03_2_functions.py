@@ -25,8 +25,14 @@ def printInitialMessage():
     print("(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)")
     print("")
     print("but it's a very borad.")
-    print("so simply getdata function()")
+    print("so use get_data function()")
     print("")
+    print("x, t = get_data()")
+    print("")
+    print("")
+    print("")
+    print("")
+
 
 def checkIdf():
     chk_val = np.array([-1, 0, 1.3])
