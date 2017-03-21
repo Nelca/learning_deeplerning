@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
-import pdb
 
 collect_ans_predict = np.array(['np.dot(z1,W2)+b2', 'sigmoid(a2)', 'softmax(a3)'])
 
@@ -21,10 +20,6 @@ def predict(network, x):
     W1, W2, W3 = network['W1'], network['W2'], network['W3']
     b1, b2, b3 = network['b1'], network['b2'], network['b3']
 
-    shape_x = x.shape
-    shape_W1 = W1.shape
-    shape_b1 = b1.shape
-
     a1_dot = np.dot(x, W1)
     a1 = a1_dot + b1
     z1 = sigmoid(a1)
@@ -35,7 +30,7 @@ def predict(network, x):
 
     return y
 
-def getAccurary(x, t):
+def getAccurary(x, t, network):
     accuracy_cnt = 0
     for i in range(len(x)):
         y = predict(network, x[i])
@@ -43,7 +38,7 @@ def getAccurary(x, t):
         if p == t[i]:
             accuracy_cnt += 1
 
-    accuracy = float(accuracy_cnt) / len(x))
+    accuracy = float(accuracy_cnt) / len(x)
     return accuracy
 
 def printInitialMessage():
@@ -83,8 +78,8 @@ def checkIdf():
         print("If you want hint, type this -> hint_idf")
         print("")
 
-def checkPredictFillin(ans, skip=false):
-    replaced_ri = ans.replace(" ", "")
+def checkPredictFillin(ans, skip=False):
+    ans = ans.replace(" ", "")
     if all(ans==collect_ans_predict) or skip:
         print("")
         print("Tha's greate!!!")
