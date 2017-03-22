@@ -20,8 +20,7 @@ def predict(network, x):
     W1, W2, W3 = network['W1'], network['W2'], network['W3']
     b1, b2, b3 = network['b1'], network['b2'], network['b3']
 
-    a1_dot = np.dot(x, W1)
-    a1 = a1_dot + b1
+    a1 = np.dot(x, W1) + b1
     z1 = sigmoid(a1)
     a2 = np.dot(z1, W2) + b2
     z2 = sigmoid(a2)
@@ -79,7 +78,7 @@ def checkIdf():
         print("")
 
 def checkPredictFillin(ans, skip=False):
-    ans = ans.replace(" ", "")
+    ans = map(string.replace(" ", ""), ans)
     if all(ans==collect_ans_predict) or skip:
         print("")
         print("Tha's greate!!!")
