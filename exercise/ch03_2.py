@@ -56,7 +56,6 @@ class CustomConsole(cc.CustomConsole):
             print("Or you nedd answer, type as follow->")
             print("ans_predict")
             print("")
-           print("")
         elif replaced_ri == "hint_predict":
             print("Predict function as follow.")
             print("")
@@ -106,7 +105,7 @@ class CustomConsole(cc.CustomConsole):
             print("And check the answer as below.")
             print("checkPredictFillin(ans)")
             print("")
-        elif replaced_ri == "network=init_nework()":
+        elif replaced_ri == "network=init_network()":
             print("That's good!")
             print("Next is calculate recognition accuracy,")
             print("and check the accuracy answre as follow.")
@@ -125,8 +124,6 @@ class CustomConsole(cc.CustomConsole):
             print("        accuracy_cnt += 1")
             print("    accuracy = float(accuracy_cnt) / len(x))")
             print("")
-            print("")
- 
         elif replaced_ri == "np.sum(chk)":
             print("")
             self.runsource(ri)

@@ -5,7 +5,7 @@ import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
 
-collect_ans_predict = np.array(['np.dot(z1,W2)+b2', 'sigmoid(a2)', 'softmax(a3)'])
+collect_ans_predict = np.array(['np.dot(z1, W2) + b2', 'sigmoid(a2)', 'softmax(a3)'])
 
 def get_data():
     (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
@@ -29,7 +29,7 @@ def predict(network, x):
 
     return y
 
-def getAccurary(x, t, network):
+def getAccuracy(x, t, network):
     accuracy_cnt = 0
     for i in range(len(x)):
         y = predict(network, x[i])
@@ -39,6 +39,10 @@ def getAccurary(x, t, network):
 
     accuracy = float(accuracy_cnt) / len(x)
     return accuracy
+
+
+x, t = get_data()
+accuracy_cnt = 0
 
 def printInitialMessage():
     print("")
@@ -78,7 +82,6 @@ def checkIdf():
         print("")
 
 def checkPredictFillin(ans, skip=False):
-    ans = map(string.replace(" ", ""), ans)
     if all(ans==collect_ans_predict) or skip:
         print("")
         print("Tha's greate!!!")
@@ -89,7 +92,7 @@ def checkPredictFillin(ans, skip=False):
         print("Here was simplify it as follows")
         print("")
         print("Type this->")
-        print("network = init_nework()")
+        print("network = init_network()")
         print("")
     else:
         print("")
@@ -98,7 +101,22 @@ def checkPredictFillin(ans, skip=False):
         print("If you want hint, type this -> hint_predict")
         print("")
         print("Or, type this->")
-        print("checkPredictFillin(ans, skip=true)")
+        print("checkPredictFillin(ans, skip=True)")
+        print("")
+
+def checkAccuracy(accuracy_ans):
+    collect_accuracy = getAccuracy(x, t, network)
+    if collect_accuracy==accuracy_ans:
+        print("")
+        print("That's goooood!!")
+        print("Now you get a greate accuracy.")
+        print("")
+        print("")
+    else:
+        print("")
+        print("Mmmmmm,,,accuracy is not collect.")
+        print("If you want answer type this->")
+        print("getAccuracy(x, t, netowok)")
         print("")
 
 def nextChapter(file_name="ch04.py"):
