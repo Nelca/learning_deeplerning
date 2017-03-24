@@ -124,11 +124,6 @@ class CustomConsole(cc.CustomConsole):
             print("        accuracy_cnt += 1")
             print("    accuracy = float(accuracy_cnt) / len(x))")
             print("")
-        elif replaced_ri == "np.sum(chk)":
-            print("")
-            self.runsource(ri)
-            ri = ""
-            print("")
         return ri
 
 ch03_2_console = CustomConsole(question_file= "./ch03_2_functions.py")

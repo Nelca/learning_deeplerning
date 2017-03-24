@@ -40,6 +40,18 @@ def getAccuracy(x, t, network):
     accuracy = float(accuracy_cnt) / len(x)
     return accuracy
 
+def getAccuracyWithBatch(x, t, network):
+    batch_size = 100
+    accuracy_cnt = 0
+    for i in range(0, len(x), batch_size):
+        x_batch = x[i:i+batch_size]
+        y_batch = predict(network, x_batch)
+        p = np.argmax(y_batch, axis=1)
+        accuracy_cnt += np.sum(p == t[i:i+batch_size])
+
+    accuracy = float(accuracy_cnt) / len(x)
+    return accuracy
+
 
 x, t = get_data()
 accuracy_cnt = 0
@@ -111,6 +123,10 @@ def checkAccuracy(accuracy_ans):
         print("That's goooood!!")
         print("Now you get a greate accuracy.")
         print("")
+        print("Next is get accuracy with batch.")
+        print("Set batch size is 100.")
+        print("And check your answer as below.")
+        print("checkAccuracyBatch(batch_accuracy_ans)")
         print("")
     else:
         print("")
@@ -118,6 +134,23 @@ def checkAccuracy(accuracy_ans):
         print("If you want answer type this->")
         print("getAccuracy(x, t, netowok)")
         print("")
+
+def checkAccuracyBatch(ans):
+    collect_accuracy = getAccuracyWithBatch(x, t, network)
+    if collect_accuracy==ans:
+        print("")
+        print("OK!!!")
+        print("This chapter is the end.")
+        print("")
+        print("So, let's move nexet chapter!")
+        nextChapter()
+    else:
+        print("")
+        print("Mmmmmm,,,accuracy is not collect.")
+        print("If you want answer type this->")
+        print("getAccuracy(x, t, netowok)")
+        print("")
+
 
 def nextChapter(file_name="ch04.py"):
     with open(file_name) as next_chapter:
