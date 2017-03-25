@@ -5,6 +5,10 @@ import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
 
+hint_predict = ""
+ans_predict = ""
+hint_accuracy = ""
+
 collect_ans_predict = np.array(['np.dot(z1, W2) + b2', 'sigmoid(a2)', 'softmax(a3)'])
 
 def get_data():
