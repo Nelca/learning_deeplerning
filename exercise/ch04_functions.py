@@ -1,7 +1,17 @@
 import numpy as np
 
 hint_ms_error = ""
+hint_ce_error = """
+Cross entropy error is as follow
 
+def entropy_error(y, t):
+    delta = 1e-7
+    return -np.sum(t * np.log(y + delta))
+
+And check your define function as follow.
+checkCeError()
+
+"""
 chk_y = np.array([0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0])
 chk_t = np.array([0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
 
@@ -20,6 +30,10 @@ def tangent_line(f, x):
  
 def collect_mean_squared_error(y, t):
     return 0.5 * np.sum((y-t)**2)
+
+def collect_cross_entropy_error(y, t):
+    delta = 1e-7
+    return -np.sum(t * np.log(y + delta))
 
 print("*****************************")
 print("")
@@ -60,6 +74,22 @@ def checkMsError():
         print("hint_ms_error")
         print("")
         print("")
+
+def checkCeError():
+    ans = cross_entropy_error(chk_y, chk_t)
+    collect_ans = collect_cross_entropy_error(chk_y, chk_t)
+    if ans==collect_ans:
+        print("")
+        print("OK")
+        print("")
+    else:
+        print("")
+        print("Mmm, function is not collect.")
+        print("")
+        print("If you nedd a hint type as follow.")
+        print("hint_ce_error")
+        print("")
+
 
 def nextChapter(file_name="ch05.py"):
     with open(file_name) as next_chapter:

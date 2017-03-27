@@ -13,8 +13,10 @@ class CustomConsole(cc.CustomConsole):
             print("")
             print("And check your define function as follow.")
             print("checkMsError()")
-       elif ri == "hint_step_func":
-            print("")
+            ri = ""
+       elif ri == "hint_ce_error":
+            self.runsource("print(hint_ce_error)")
+            ri = ""
        return ri
 
 ch04_console = CustomConsole(question_file= "./ch04_functions.py")
