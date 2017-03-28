@@ -17,6 +17,9 @@ class CustomConsole(cc.CustomConsole):
        elif ri == "hint_ce_error":
             self.runsource("print(hint_ce_error)")
             ri = ""
+       elif ri == "hint_random_data":
+            self.runsource("print(hint_random_data)")
+            ri = ""
        return ri
 
 ch04_console = CustomConsole(question_file= "./ch04_functions.py")
