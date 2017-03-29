@@ -31,8 +31,6 @@ checkRandomData(random_x, random_t)
 chk_y = np.array([0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0])
 chk_t = np.array([0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
 
-
-
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 train_size = x_train.shape[0]
@@ -42,27 +40,12 @@ def numerical_diff(f, x):
     h = 1e-4 # 0.0001
     return (f(x+h) - f(x-h)) / (2*h)
 
-def function_1(x):
-    return 0.01*x**2 + 0.1*x 
-
-def tangent_line(f, x):
-    d = numerical_diff(f, x)
-    print(d)
-    y = f(x) - d*x
-    return lambda t: d*t + y
- 
 def collect_mean_squared_error(y, t):
     return 0.5 * np.sum((y-t)**2)
 
 def collect_cross_entropy_error(y, t):
     delta = 1e-7
     return -np.sum(t * np.log(y + delta))
-
-def get_random_data():
-    batch_mask = np.random.choice(train_size, batch_size)
-    x_batch = x_train[batch_mask]
-    t_batch = t_train[batch_mask]
-
 
 print("*****************************")
 print("")
@@ -140,8 +123,11 @@ def checkRandomData(x, t):
     chk_batch_t = batch_size == t.shape[0]
     if chk_batch_x and chk_batch_t:
         print("")
-        print("OK")
+        print("Okay!!!!")
         print("")
+        print("Next is lerning differential.")
+        print("")
+        nextChapter()
     else:
         print("")
         print("ooops, data is not collect.")
@@ -153,7 +139,7 @@ def checkRandomData(x, t):
         print("checkRandomData(random_x, random_t)")
         print("")
 
-def nextChapter(file_name="ch05.py"):
+def nextChapter(file_name="ch04_2.py"):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
