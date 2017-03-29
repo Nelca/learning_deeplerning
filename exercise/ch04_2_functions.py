@@ -3,8 +3,18 @@ sys.path.append(os.pardir)
 import numpy as np
 from dataset.mnist import load_mnist
 
+
+hint_nu_diff = """Numericl diff is as follow.
+
+def numerical_diff(f, x):
+    h = 1e-4
+    return (f(x+h) - f(x-h)) / (2*h)
+
+And check defined function as follow.
+checkNuDiff()
+"""
+
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
-batch_size = 10
 
 def collect_numerical_diff(f, x):
     h = 1e-4
@@ -13,14 +23,8 @@ def collect_numerical_diff(f, x):
 def chk_function(x):
     return 0.01*x**2 + 0.1*x 
 
-def tangent_line(f, x):
-    d = numerical_diff(f, x)
-    print(d)
-    y = f(x) - d*x
-    return lambda t: d*t + y
-
 def _numerical_gradient_no_batch(f, x):
-    h = 1e-4 # 0.0001
+    h = 1e-4
     grad = np.zeros_like(x)
     
     for idx in range(x.size):
@@ -64,13 +68,21 @@ def checkNuDiff():
     f = chk_function
     ans = numerical_diff(f, x)
     collect_ans = collect_numerical_diff(f, x)
-    if True:
+    if ans == collect_ans:
         print("")
         print("OK!")
+        print("Let's move to next step.")
+        print("The numerical diff is not fit a array.")
+        print("Nu is not ")
+        print("")
         print("")
     else:
         print("")
-        print("NG")
+        print("Mmmmm.")
+        print("It's not collect of function.")
+        print("")
+        print("If you want hint type this ->")
+        print("hint_nu_diff")
         print("")
 
 def nextChapter(file_name="ch5.py"):
