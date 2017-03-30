@@ -13,8 +13,27 @@ def numerical_diff(f, x):
 And check defined function as follow.
 checkNuDiff()
 """
+hint_grad_desc = """Gradient descent function as follow.
 
+def gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
+    x_history = []
+
+    for i in range(step_num):
+        x_history.append( x.copy() )
+
+        grad = numerical_gradient(f, x)
+        x -= lr * grad
+
+    return x, np.array(x_history)
+
+
+And check defined function as follow.
+checkGradDesc()
+"""
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
+
+init_x = np.array([-3.0, 4.0])    
 
 def collect_numerical_diff(f, x):
     h = 1e-4
@@ -22,6 +41,16 @@ def collect_numerical_diff(f, x):
 
 def chk_function(x):
     return 0.01*x**2 + 0.1*x 
+
+def chk_function_2(x):
+    if x.ndim == 1:
+        return np.sum(x**2)
+    else:
+        return np.sum(x**2, axis=1)
+
+def chk_function_3(x):
+    return x[0]**2 + x[1]**2
+
 
 def _numerical_gradient_no_batch(f, x):
     h = 1e-4
@@ -52,6 +81,31 @@ def numerical_gradient(f, X):
         
         return grad
 
+def collect_gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
+    x_history = []
+
+    for i in range(step_num):
+        x_history.append( x.copy() )
+
+        grad = numerical_gradient(f, x)
+        x -= lr * grad
+
+    return x, np.array(x_history)
+
+def gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
+    x_history = []
+
+    for i in range(step_num):
+        x_history.append( x.copy() )
+
+        grad = numerical_gradient(f, x)
+        x -= lr * grad
+
+    return x, np.array(x_history)
+
+
 
 print("*****************************")
 print("")
@@ -63,18 +117,21 @@ print("")
 print("And check defined function as follow.")
 print("checkNuDiff()")
 
-def checkNuDiff():
+def checkNuDiff(skip=False):
     x = 5
     f = chk_function
     ans = numerical_diff(f, x)
     collect_ans = collect_numerical_diff(f, x)
-    if ans == collect_ans:
+    if ans == collect_ans or skip:
         print("")
         print("OK!")
         print("Let's move to next step.")
-        print("The numerical diff is not fit a array.")
-        print("Nu is not ")
+        print("Next is lerning gradient.")
         print("")
+        print("Let's check the gradient results as follow.")
+        print("numerical_gradient(chk_function_2, np.array([3.0, 4.0]))")
+        print("")
+        print("or type this 'next_of_gradient_chk'")
         print("")
     else:
         print("")
@@ -83,6 +140,21 @@ def checkNuDiff():
         print("")
         print("If you want hint type this ->")
         print("hint_nu_diff")
+        print("")
+
+
+def checkGradDesc():
+    f = chk_function_3
+    init_x = np.array([-3.0, 4.0])    
+    ans, ans_history = gradient_descent(f, init_x)
+    collect_ans, collect_ans_history = collect_gradient_descent(f, init_x)
+    if all(ans==collect_ans):
+        print("")
+        print("OK")
+        print("")
+    else:
+        print("")
+        print("NG")
         print("")
 
 def nextChapter(file_name="ch5.py"):
