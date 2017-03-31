@@ -27,6 +27,50 @@ class CustomConsole(cc.CustomConsole):
             print("")
             print("If you want a hint type this->")
             print("hint_grad_desc")
+       elif replaced_ri == "print(net.W)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("Grate!")
+            print("This is the simple net weight.")
+            print("And next is predict.")
+            print("define input and execute predict of simple net as follow.")
+            print("")
+            print("x = np.array([0.6, 0.9])")
+            print("p = net.predict(x)")
+            print("print(p)")
+       elif replaced_ri == "view_simple_net":
+            self.runsource("print(view_simple_net)")
+            ri = ""
+       elif replaced_ri == "print(p)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("Tha's good!")
+            print("and calc index of max value as follow.")
+            print("np.argmax(p)")
+            print("")
+       elif replaced_ri == "np.argmax(p)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("Okay, next is define collect label as follow.")
+            print("t = np.array([0, 0, 1])")
+            print("")
+       elif replaced_ri == "t=np.array([0,0,1])":
+            self.runsource(ri)
+            ri = ""
+            print("That's it!")
+            print("and calc loss as follow.")
+            print("net.loss(x, t)")
+            print("")
+       elif replaced_ri == "net.loss(x,t)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("")
+            print("")
+            print("")
        elif replaced_ri == "hint_grad_desc":
             self.runsource("print(hint_grad_desc)")
             ri = ""

@@ -31,6 +31,24 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
 And check defined function as follow.
 checkGradDesc()
 """
+view_simple_net = """Simple net is as follow.
+
+class simpleNet:
+    def __init__(self):
+        self.W = np.random.randn(2,3)
+
+    def predict(self, x):
+        return np.dot(x, self.W)
+
+    def loss(self, x, t):
+        z = self.predict(x)
+        y = softmax(z)
+        loss = cross_entropy_error(y, t)
+
+        return loss
+
+"""
+
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 init_x = np.array([-3.0, 4.0])    
@@ -93,18 +111,19 @@ def collect_gradient_descent(f, init_x, lr=0.01, step_num=100):
 
     return x, np.array(x_history)
 
-def gradient_descent(f, init_x, lr=0.01, step_num=100):
-    x = init_x
-    x_history = []
+class simpleNet:
+    def __init__(self):
+        self.W = np.random.randn(2,3)
 
-    for i in range(step_num):
-        x_history.append( x.copy() )
+    def predict(self, x):
+        return np.dot(x, self.W)
 
-        grad = numerical_gradient(f, x)
-        x -= lr * grad
+    def loss(self, x, t):
+        z = self.predict(x)
+        y = softmax(z)
+        loss = cross_entropy_error(y, t)
 
-    return x, np.array(x_history)
-
+        return loss
 
 
 print("*****************************")
@@ -143,18 +162,35 @@ def checkNuDiff(skip=False):
         print("")
 
 
-def checkGradDesc():
+def checkGradDesc(skip=False):
     f = chk_function_3
     init_x = np.array([-3.0, 4.0])    
     ans, ans_history = gradient_descent(f, init_x)
     collect_ans, collect_ans_history = collect_gradient_descent(f, init_x)
-    if all(ans==collect_ans):
+    if all(ans==collect_ans) or skip:
         print("")
-        print("OK")
+        print("That's good !!!!")
+        print("Next is nueral net gradient.")
+        print("Check the neural net step by step.")
         print("")
+        print("First of all, define neural net as follow.")
+        print("net = simpleNet()")
+        print("")
+        print("And view net weight.")
+        print("print(net.W)")
+        print("")
+        print("If you want to see simple net, type this-> ")
+        print("view_simple_net")
     else:
         print("")
-        print("NG")
+        print("Mmmmm.")
+        print("It's not collect of function.")
+        print("")
+        print("If you want hint type this ->")
+        print("hint_grad_diff")
+        print("")
+        print("Or you will skip this")
+        print("checkGradDesc(skip=True)")
         print("")
 
 def nextChapter(file_name="ch5.py"):
