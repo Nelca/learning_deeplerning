@@ -2,6 +2,7 @@ import sys, os
 sys.path.append(os.pardir)
 import numpy as np
 from dataset.mnist import load_mnist
+from common.functions import softmax, cross_entropy_error
 
 
 hint_nu_diff = """Numericl diff is as follow.
@@ -125,6 +126,7 @@ class simpleNet:
 
         return loss
 
+dummy_f = lambda w: net.loss(x, t)
 
 print("*****************************")
 print("")
@@ -175,9 +177,6 @@ def checkGradDesc(skip=False):
         print("")
         print("First of all, define neural net as follow.")
         print("net = simpleNet()")
-        print("")
-        print("And view net weight.")
-        print("print(net.W)")
         print("")
         print("If you want to see simple net, type this-> ")
         print("view_simple_net")

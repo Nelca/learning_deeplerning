@@ -27,6 +27,14 @@ class CustomConsole(cc.CustomConsole):
             print("")
             print("If you want a hint type this->")
             print("hint_grad_desc")
+       elif replaced_ri == "net=simpleNet()":
+            self.runsource(ri)
+            ri = ""
+            print("Okay, next is check the net.")
+            print("")
+            print("First of all view net weight.")
+            print("print(net.W)")
+            print("")
        elif replaced_ri == "print(net.W)":
             self.runsource(ri)
             ri = ""
@@ -67,6 +75,25 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "net.loss(x,t)":
             self.runsource(ri)
             ri = ""
+            print("That's good!!!")
+            print("Next is calcurate gradient as below.")
+            print("")
+            print("Nnow use the dummy function as follow.")
+            print("dummy_f = lambda w: net.loss(x, t)")
+            print("")
+            print("So you can calcurate gradient as follow.")
+            print("")
+            print("dW = numerical_gradient(dummy_f, net.W)")
+            print("print(dW)")
+            print("")
+       elif replaced_ri == "print(dW)":
+            self.runsource(ri)
+            ri = ""
+            print("")
+            print("Yeah!!")
+            print("It's calucurated answer is gradient.")
+            print("")
+            print("Next is difine lerning algorism.")
             print("")
             print("")
             print("")
