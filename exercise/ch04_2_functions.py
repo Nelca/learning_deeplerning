@@ -3,6 +3,7 @@ sys.path.append(os.pardir)
 import numpy as np
 from dataset.mnist import load_mnist
 from common.functions import softmax, cross_entropy_error
+from two_layer_net import TwoLayerNet
 
 
 hint_nu_diff = """Numericl diff is as follow.
@@ -53,6 +54,15 @@ class simpleNet:
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 init_x = np.array([-3.0, 4.0])    
+
+# for answer net
+weight_init_std =  0.01
+net = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+
+tlNet = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+
+W1_params = weight_init_std * np.random.randn(input_size, hidden_size)
+b1_params = np.zeros(hidden_size)
 
 def collect_numerical_diff(f, x):
     h = 1e-4
@@ -191,6 +201,10 @@ def checkGradDesc(skip=False):
         print("Or you will skip this")
         print("checkGradDesc(skip=True)")
         print("")
+
+def checkTlnetParam(tlNet):
+    ans = tlNet.params['W1']
+    collect_ans = tlNet.params['W1']
 
 def nextChapter(file_name="ch5.py"):
     with open(file_name) as next_chapter:
