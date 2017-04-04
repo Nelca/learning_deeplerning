@@ -50,19 +50,29 @@ class simpleNet:
         return loss
 
 """
+hint_weight_param = """
+W1 param is as follow.
+W1 = weight_init_std * np.random.randn(input_size, hidden_size)
 
+So, you can define the weight as follow.
+tlNet.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
+
+and check the answe as follow.
+checkTlnetParam(tlNet)
+"""
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 init_x = np.array([-3.0, 4.0])    
 
-# for answer net
+# for check answer net
 weight_init_std =  0.01
-net = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+input_size=784
+hidden_size=50
+output_size=10
+net = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
-tlNet = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
-
-W1_params = weight_init_std * np.random.randn(input_size, hidden_size)
-b1_params = np.zeros(hidden_size)
+# for answer net
+tlNet = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
 def collect_numerical_diff(f, x):
     h = 1e-4
@@ -204,7 +214,14 @@ def checkGradDesc(skip=False):
 
 def checkTlnetParam(tlNet):
     ans = tlNet.params['W1']
-    collect_ans = tlNet.params['W1']
+    if ans.shape[0]==input_size and ans.shape[1]==hidden_size:
+        print("")
+        print("It's OK!!")
+        print("")
+    else:
+        print("")
+        print("NG")
+        print("")
 
 def nextChapter(file_name="ch5.py"):
     with open(file_name) as next_chapter:

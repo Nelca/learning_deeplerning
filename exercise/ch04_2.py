@@ -106,12 +106,16 @@ class CustomConsole(cc.CustomConsole):
             print("So, you define this net's param etc.")
             print("")
             print("First of all, define weight of this net like this")
-            print("tlNet.params['W1'] = piyo")
+            print("tlNet.params['W1'] = foo")
+            print("")
             print("")
             print("And check the param as follow")
             print("checkTlnetParam(tlNet)")
        elif replaced_ri == "hint_grad_desc":
             self.runsource("print(hint_grad_desc)")
+            ri = ""
+       elif replaced_ri == "hint_weight_param":
+            self.runsource("print(hint_weight_param)")
             ri = ""
        return ri
 
