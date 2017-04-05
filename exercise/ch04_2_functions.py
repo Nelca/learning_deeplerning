@@ -216,12 +216,23 @@ def checkTlnetParam(tlNet):
     ans = tlNet.params['W1']
     if ans.shape[0]==input_size and ans.shape[1]==hidden_size:
         print("")
-        print("It's OK!!")
+        print("That's good !!!")
         print("")
+        print("Next is the neteork bias.")
+        print("So you define biases as follow.")
+        print("tlNet.params['W1'] = bar")
+        print("")
+        print("And check the bias as follow.")
+        print("checkBiasParan(tlNet)")
     else:
         print("")
-        print("NG")
+        print("Mmmm it's not collect param defined.")
         print("")
+        print("If you want the hint, type this ->")
+        print("hint_weight_param")
+        print("")
+        print("And check the param as follow")
+        print("checkTlnetParam(tlNet)")
 
 def nextChapter(file_name="ch5.py"):
     with open(file_name) as next_chapter:
