@@ -27,11 +27,9 @@ for i in range(iters_num):
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
     
-    # 勾配の計算
     grad = network.numerical_gradient(x_batch, t_batch)
     #grad = network.gradient(x_batch, t_batch)
     
-    # パラメータの更新
     for key in ('W1', 'b1', 'W2', 'b2'):
         network.params[key] -= learning_rate * grad[key]
     

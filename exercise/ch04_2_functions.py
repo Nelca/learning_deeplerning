@@ -60,6 +60,42 @@ tlNet.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
 and check the answe as follow.
 checkTlnetParam(tlNet)
 """
+hint_bias_param="""
+bi param is as follow.
+tlNet.params['b1'] = np.zeros(hidden_size)
+
+and check the answe as follow.
+checkBiasParam(tlNet)
+"""
+
+train_net="""
+
+for i in range(iters_num):
+    batch_mask = np.random.choice(train_size, batch_size)
+    x_batch = x_train[batch_mask]
+    t_batch = t_train[batch_mask]
+    
+    grad = network.numerical_gradient(x_batch, t_batch)
+    #grad = network.gradient(x_batch, t_batch)
+    
+    for key in ('W1', 'b1', 'W2', 'b2'):
+        network.params[key] -= learning_rate * grad[key]
+    
+    loss = network.loss(x_batch, t_batch)
+    train_loss_list.append(loss)
+    
+    if i % iter_per_epoch == 0:
+        train_acc = network.accuracy(x_train, t_train)
+        test_acc = network.accuracy(x_test, t_test)
+        train_acc_list.append(train_acc)
+        test_acc_list.append(test_acc)
+        print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+
+
+
+
+"""
+
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 init_x = np.array([-3.0, 4.0])    
@@ -72,6 +108,7 @@ output_size=10
 net = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
 # for answer net
+dummy_x = np.random.rand(100, 784)
 tlNet = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
 def collect_numerical_diff(f, x):
@@ -220,10 +257,10 @@ def checkTlnetParam(tlNet):
         print("")
         print("Next is the neteork bias.")
         print("So you define biases as follow.")
-        print("tlNet.params['W1'] = bar")
+        print("tlNet.params['b1'] = bar")
         print("")
         print("And check the bias as follow.")
-        print("checkBiasParan(tlNet)")
+        print("checkBiasParam(tlNet)")
     else:
         print("")
         print("Mmmm it's not collect param defined.")
@@ -233,6 +270,33 @@ def checkTlnetParam(tlNet):
         print("")
         print("And check the param as follow")
         print("checkTlnetParam(tlNet)")
+
+def checkBiasParam(tlNet):
+    ans = tlNet.params['b1']
+    if ans.shape[0]==hidden_size:
+        print("")
+        print("That's good!!!")
+        print("your defined bias is collect.")
+        print("")
+        print("Next is check the network predict.")
+        print("")
+        print("I defined dummy data as follow.")
+        print("dummy_x = np.random.rand(100, 784)")
+        print("")
+        print("So you type this as follow")
+        print("y = net.predict(dummy_x)")
+        print("")
+        print("If you don't go to next step, type this->")
+        print("next_predict")
+    else:
+        print("")
+        print("Mmmm it's not collect param defined.")
+        print("")
+        print("If you want the hint, type this ->")
+        print("hint_biaas_param")
+        print("")
+        print("And check the bias as follow.")
+        print("checkBiasParam(tlNet)")
 
 def nextChapter(file_name="ch5.py"):
     with open(file_name) as next_chapter:

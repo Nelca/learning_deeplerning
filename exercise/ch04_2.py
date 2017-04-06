@@ -117,6 +117,24 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_weight_param":
             self.runsource("print(hint_weight_param)")
             ri = ""
+       elif replaced_ri == "hint_bias_param":
+            self.runsource("print(hint_bias_param)")
+            ri = ""
+       elif replaced_ri == "y=net.predict(dummy_x)" or ri == "next_predict":
+            if replaced_ri == "y=net.predict(dummy_x)":
+                self.runsource(ri)
+
+            ri = ""
+            print("")
+            print("Okay, predict result is abobe.")
+            print("Next is calcurate network")
+            print("")
+            print("calcurate program is as follow.")
+            print("")
+            print("So, you full fill the foo bar.")
+            print("")
+            print("")
+            print("")
        return ri
 
 ch04_2_console = CustomConsole(question_file= "./ch04_2_functions.py")
