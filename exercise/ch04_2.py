@@ -123,18 +123,27 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "y=net.predict(dummy_x)" or ri == "next_predict":
             if replaced_ri == "y=net.predict(dummy_x)":
                 self.runsource(ri)
-
             ri = ""
+            self.runsource("print(y)")
             print("")
             print("Okay, predict result is abobe.")
             print("Next is calcurate network")
             print("")
-            print("calcurate program is as follow.")
+            print("Calcurate program is as follow.")
+            print("So, you fill in the hole filling questioin.")
             print("")
-            print("So, you full fill the foo bar.")
+            self.runsource("print(question_train_tl_net)")
             print("")
+            print("Define your answer as follow.")
+            print("question_1 = foo")
+            print("question_2 = bar")
+            print("question_3 = baz")
             print("")
-            print("")
+            print("And, check your answer as follow.")
+            print("checkTrainAns()")
+       elif replaced_ri == "hint_train_ans":
+            self.runsource("print(hint_train_ans)")
+            ri = ""
        return ri
 
 ch04_2_console = CustomConsole(question_file= "./ch04_2_functions.py")

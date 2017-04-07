@@ -68,15 +68,39 @@ and check the answe as follow.
 checkBiasParam(tlNet)
 """
 
-train_net="""
+question_train_tl_net="""
 
 for i in range(iters_num):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
     
-    grad = network.numerical_gradient(x_batch, t_batch)
-    #grad = network.gradient(x_batch, t_batch)
+    grad = 'question_1'
+    
+    for key in ('W1', 'b1', 'W2', 'b2'):
+        network.params[key] -= 'question_2'
+    
+    loss = 'question_3'
+    train_loss_list.append(loss)
+    
+    if i % iter_per_epoch == 0:
+        train_acc = network.accuracy(x_train, t_train)
+        test_acc = network.accuracy(x_test, t_test)
+        train_acc_list.append(train_acc)
+        test_acc_list.append(test_acc)
+        print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+
+"""
+
+collect_train_tl_net="""
+
+for i in range(iters_num):
+    batch_mask = np.random.choice(train_size, batch_size)
+    x_batch = x_train[batch_mask]
+    t_batch = t_train[batch_mask]
+    
+    #grad = network.numerical_gradient(x_batch, t_batch)
+    grad = network.gradient(x_batch, t_batch)
     
     for key in ('W1', 'b1', 'W2', 'b2'):
         network.params[key] -= learning_rate * grad[key]
@@ -91,11 +115,17 @@ for i in range(iters_num):
         test_acc_list.append(test_acc)
         print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
 
-
-
-
 """
+hint_train_ans = """
+Answer is as follow.
 
+question_1 = net.gradient(x_batch, t_batch)
+question_2 = learning_rate * grad[key]
+question_3 = net.loss(x_batch, t_batch)
+
+And, check your answer as follow.
+checkTrainAns()
+"""
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
 init_x = np.array([-3.0, 4.0])    
@@ -105,11 +135,28 @@ weight_init_std =  0.01
 input_size=784
 hidden_size=50
 output_size=10
+learning_rate = 0.1
 net = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
 
 # for answer net
 dummy_x = np.random.rand(100, 784)
+y = net.predict(dummy_x)
 tlNet = TwoLayerNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size)
+
+
+train_size = x_train.shape[0]
+batch_size = 100
+learning_rate = 0.1
+
+batch_mask = np.random.choice(train_size, batch_size)
+x_batch = x_train[batch_mask]
+t_batch = t_train[batch_mask]
+grad = net.numerical_gradient(x_batch, t_batch)
+
+ans_1 = net.gradient(x_batch, t_batch)
+ans_2 = learning_rate * grad[0]
+ans_3 = net.loss(x_batch, t_batch)
+
 
 def collect_numerical_diff(f, x):
     h = 1e-4
@@ -297,6 +344,25 @@ def checkBiasParam(tlNet):
         print("")
         print("And check the bias as follow.")
         print("checkBiasParam(tlNet)")
+
+def checkTrainAns():
+    chk_1 = ans_1 == question_1
+    chk_2 = ans_2 == question_2
+    chk_3 = ans_3 == question_3
+    if chk_1 and chk_2 and chk_3 :
+        print("")
+        print("That's good!!")
+        print("the answer is collect.")
+        print("")
+    else:
+        print("")
+        print("Mmmmmm, that's answer is not collect.")
+        print("")
+        print("If you want a hint, type as follow")
+        print("hint_train_ans")
+        print("")
+        print("And, check your answer as follow.")
+        print("checkTrainAns()")
 
 def nextChapter(file_name="ch5.py"):
     with open(file_name) as next_chapter:
