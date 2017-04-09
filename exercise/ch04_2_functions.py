@@ -78,7 +78,7 @@ for i in range(iters_num):
     grad = 'question_1'
     
     for key in ('W1', 'b1', 'W2', 'b2'):
-        network.params[key] -= 'question_2'
+        network.params[key] -= 'question_2' * grad[key]
     
     loss = 'question_3'
     train_loss_list.append(loss)
@@ -120,7 +120,7 @@ hint_train_ans = """
 Answer is as follow.
 
 question_1 = net.gradient(x_batch, t_batch)
-question_2 = learning_rate * grad[key]
+question_2 = learning_rate
 question_3 = net.loss(x_batch, t_batch)
 
 And, check your answer as follow.
@@ -151,10 +151,11 @@ learning_rate = 0.1
 batch_mask = np.random.choice(train_size, batch_size)
 x_batch = x_train[batch_mask]
 t_batch = t_train[batch_mask]
-grad = net.numerical_gradient(x_batch, t_batch)
+#grad = net.numerical_gradient(x_batch, t_batch)
 
 ans_1 = net.gradient(x_batch, t_batch)
-ans_2 = learning_rate * grad[0]
+#ans_2 = learning_rate * grad[0]
+ans_2 = learning_rate
 ans_3 = net.loss(x_batch, t_batch)
 
 
@@ -346,7 +347,7 @@ def checkBiasParam(tlNet):
         print("checkBiasParam(tlNet)")
 
 def checkTrainAns():
-    chk_1 = ans_1 == question_1
+    chk_1 = np.array_equal(ans_1, questioin_1)
     chk_2 = ans_2 == question_2
     chk_3 = ans_3 == question_3
     if chk_1 and chk_2 and chk_3 :
