@@ -347,7 +347,9 @@ def checkBiasParam(tlNet):
         print("checkBiasParam(tlNet)")
 
 def checkTrainAns():
-    chk_1 = np.array_equal(ans_1, questioin_1)
+    len_ans_1 = len(ans_1)
+    len_question_1 = len(question_1)
+    chk_1 = len_ans_1 == len_question_1
     chk_2 = ans_2 == question_2
     chk_3 = ans_3 == question_3
     if chk_1 and chk_2 and chk_3 :
@@ -355,6 +357,10 @@ def checkTrainAns():
         print("That's good!!")
         print("the answer is collect.")
         print("")
+        print("")
+        print("Let's go next chapter 5!!")
+        print("")
+        nextChapter()
     else:
         print("")
         print("Mmmmmm, that's answer is not collect.")
@@ -365,7 +371,7 @@ def checkTrainAns():
         print("And, check your answer as follow.")
         print("checkTrainAns()")
 
-def nextChapter(file_name="ch5.py"):
+def nextChapter(file_name="ch05.py"):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
