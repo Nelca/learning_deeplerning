@@ -5,7 +5,7 @@ class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
        replaced_ri = ri.replace(" ", "")
        if ri == "hint_ml_forword":
-            self.runsource("print(hint_nu_diff)")
+            self.runsource("print(hint_ml_forword)")
             ri = ""
        elif replaced_ri == "hint_random_data":
             self.runsource("print(hint_random_data)")

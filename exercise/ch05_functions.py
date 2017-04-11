@@ -20,7 +20,7 @@ def forward(self, x, y):
 
 So, you define the function as below.
 And check the answer as follow.
-checkMLForword()
+checkMLForward()
 
 """
 
@@ -48,24 +48,48 @@ class AnsMulLayer:
 
         return dx, dy
 
+
+mul_layer = MulLayer()
+ans_mul_layer = AnsMulLayer()
+
 print("*****************************")
 print("")
 print("This chpater is lerning backword.")
 print("")
-print("Let's define the MulLayer fforward functioin..")
+print("Let's define the MulLayer forward functioin..")
 print("")
 print("MulLayer class is defined as follow.")
 print(disp_mullayer)
 print("")
 print("So you define these answers as follow")
-print("MulLayer.forword(x, y) = foo")
+print("MulLayer.forward(x, y) = foo")
 print("")
 print("And check defined answers as follow.")
-print("checkMLForword()")
+print("checkMLForward()")
 
-def checkMLForword():
-    collect_ans = MulLayer.forword()
-    ans = MulLayer.forword()
+def checkMLForward():
+    chk_x = 2
+    chk_y = 3
+    correct_ans = ans_mul_layer.forward(chk_x, chk_y)
+    chk_ans = mul_layer.forward(chk_x, chk_y)
+    if correct_ans==chk_ans:
+        print("")
+        print("Goood!!!!")
+        print("")
+        print("Next step is backward.")
+        print("Let's define backward function like forward.")
+        print("")
+        print("And check defined answers as follow.")
+        print("checkMLBackward()")
+    else:
+        print("")
+        print("Ooops, your answer is incorrect.")
+        print("")
+        print("If you want a hint type this->")
+        print("hint_ml_forword")
+        print("")
+        print("And check defined answers as follow.")
+        print("checkMLForward()")
 
 
 def nextChapter(file_name="ch06.py"):
