@@ -10,7 +10,7 @@ class MulLayer:
         self.y = None
 """
 
-hint_ml_forword = """
+hint_ml_forward = """
 forword function is as follow.
 
 def forward(self, x, y):
@@ -24,6 +24,19 @@ checkMLForward()
 
 """
 
+hint_ml_backward = """
+backward function is as follow.
+
+def backward(self, dout):
+    dx = dout * self.y
+    dy = dout * self.x
+
+    return dx, dy
+
+And check defined answers as follow.
+checkMLBackward()
+
+"""
 
 class MulLayer:
     def __init__(self):
@@ -39,13 +52,11 @@ class AnsMulLayer:
         self.x = x
         self.y = y                
         out = x * y
-
         return out
 
     def backward(self, dout):
         dx = dout * self.y
         dy = dout * self.x
-
         return dx, dy
 
 
@@ -77,7 +88,7 @@ def checkMLForward():
         print("Goood!!!!")
         print("")
         print("Next step is backward.")
-        print("Let's define backward function like forward.")
+        print("Let's define backward function like forward function.")
         print("")
         print("And check defined answers as follow.")
         print("checkMLBackward()")
@@ -86,10 +97,31 @@ def checkMLForward():
         print("Ooops, your answer is incorrect.")
         print("")
         print("If you want a hint type this->")
-        print("hint_ml_forword")
+        print("hint_ml_forward")
         print("")
         print("And check defined answers as follow.")
         print("checkMLForward()")
+
+def checkMLBackward():
+    dout = 1
+    correct_ans = ans_mul_layer.backward(dout)
+    chk_ans = mul_layer.backward(dout)
+    if correct_ans == chk_ans:
+        print("")
+        print("OK!!!")
+        print("Mul layer is defined.")
+        print("")
+        print("")
+        print("")
+    else:
+        print("")
+        print("Result is incorrect.....")
+        print("")
+        print("If you want a hint type this->")
+        print("hint_ml_backward")
+        print("")
+        print("And check defined answers as follow.")
+        print("checkMLBackward()")
 
 
 def nextChapter(file_name="ch06.py"):
