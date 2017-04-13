@@ -16,8 +16,7 @@ class CustomConsole(cc.CustomConsole):
            print("        return 0")
            print("    else:")
            print("        return 1")
-           print("")
-           print("")
+           ri = ""
         elif replaced_ri == "hint_nand_gate" :
            print("")
            print("OK! Give you a hint.")
@@ -33,8 +32,7 @@ class CustomConsole(cc.CustomConsole):
            print("       return 0")
            print("   else:")
            print("       return 1")
-           print("")
-           print("")
+           ri = ""
         elif replaced_ri == "hint_or_gate" :
            print("")
            print("OK! Give you a hint.")
@@ -50,8 +48,7 @@ class CustomConsole(cc.CustomConsole):
            print("        return 0")
            print("    else:")
            print("        return 1")
-           print("")
-           print("")
+           ri = ""
         elif replaced_ri == "hint_xor_gate" :
            print("")
            print("XOR gate is ->")
@@ -61,7 +58,7 @@ class CustomConsole(cc.CustomConsole):
            print("    s2 = OR(x1, x2)")
            print("    y = AND(s1, s2)")
            print("    return y")
-           print("")
+           ri = ""
         return ri
 
 ch02_console = CustomConsole(question_file="./ch02_functions.py")

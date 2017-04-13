@@ -13,6 +13,9 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_relu_forward":
             self.runsource("print(hint_relu_forward)")
             ri = ""
+       elif replaced_ri == "hint_relu_backward":
+            self.runsource("print(hint_relu_backward)")
+            ri = ""
        return ri
 
 ch05_console = CustomConsole(question_file= "./ch05_functions.py")

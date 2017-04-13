@@ -4,18 +4,14 @@ hint_sigmoid = ""
 hint_step_func = ""
 hint_ReLU = ""
 
-print("")
-print("")
+print("**************************")
 print("")
 print("Hello. This section is lerning neural netowok.")
-print("")
 print("First of all, lerning a activation function.")
 print("")
 print("Let's define 'sigmoid' function.")
-print("")
 print("If you want hint, type this ->")
 print("hint_sigmoid")
-print("")
 print("")
 print("and type this->checkSigmoid()")
 
@@ -40,14 +36,11 @@ def checkSigmoid():
         print("Next activatioin function is 'step function'.")
         print("Define the 'step_function', and type checkStepFunction()")
         print("If you want hint, type this -> hint_step_func")
-        print("")
-        print("")
     else:
         print("")
         print("Mmmmm define function is not collect.")
         print("Check the function name as 'sigmoid'")
         print("If you want hint, type this -> hint_sigmoid")
-        print("")
 
 def checkStepFunction():
     chk_num = np.array([-0.5, 0, 1.0])
@@ -61,13 +54,11 @@ def checkStepFunction():
         print("Next activatioin function is Rectified Liner Unit as ReLU.")
         print("Define the 'ReLU', and type checkReLU()")
         print("If you want hint, type this -> hint_ReLU")
-        print("")
     else:
         print("")
         print("Mmmmm define function is not collect.")
         print("Check the function name as 'step_function'")
         print("If you want hint, type this -> hint_step_func")
-        print("")
 
 def checkReLU():
     chk_num = np.array([-0.5, 0, 1.0, 1.4])
@@ -85,7 +76,6 @@ def checkReLU():
         print("Mmmmm define function is not collect.")
         print("Check the function name as 'ReLU'")
         print("If you want hint, type this -> hint_ReLU")
-        print("")
 
 
 def nextChapter(file_name="ch03_1.py"):

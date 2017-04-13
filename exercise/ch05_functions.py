@@ -1,6 +1,7 @@
 import sys, os
 sys.path.append(os.pardir)
 from layer_naive import *
+import numpy as np
 
 disp_mullayer = """
 
@@ -52,6 +53,21 @@ def forward(self, x):
 so, you define the function of Relu.forward .
 And check your answer as follow.
 checkReLUForward()
+"""
+
+hint_relu_backward = """
+ReLU backward function is as follow.
+
+def backward(self, dout):
+    dout[self.mask] = 0
+    dx = dout
+
+    return dx
+
+
+so, you define the function of Relu.backward .
+And check your answer as follow.
+checkReLUBadkward()
 """
 
 class MulLayer:
@@ -173,18 +189,51 @@ def checkMLBackward():
         print("checkMLBackward()")
 
 def checkReLUForward():
-    chk_num = 1
-    ans_chk = ans_relu_layer.forward(chk_num)
-    chk = relu_layer.forward(chk_num)
-    if ans_chk==chk:
+    chk_array = np.array([[1, 2], [3, 4]])
+    ans_chk = ans_relu_layer.forward(chk_array)
+    chk = relu_layer.forward(chk_array)
+    if (ans_chk==chk).all():
         print("")
-        print("OK")
+        print("Yeah!!! thas's good!")
+        print("Next is  ReLU backward.")
+        print("")
+        print("Let's define the backward function of Relu.")
+        print("")
+        print("And check your answe as follow.")
+        print("checkReLUBackward()")
+    else:
+        print("Sorry! Your asnwer incorrect...")
+        print("")
+        print("If you want hint type this")
+        print("hint_relu_forward")
+        print("")
+        print("And check defined answers as follow.")
+        print("checkReLUForward()")
+
+
+def checkReLUBackward():
+    chk_array = np.array([[1, 2], [3, 4]])
+    ans_chk = ans_relu_layer.backward(chk_array)
+    chk = relu_layer.backward(chk_array)
+    if (ans_chk==chk).all():
+        print("")
+        print("Good!!")
+        print("Your answe is correct.")
+        print("")
+        print("Now these use these layers.")
+        print("")
+        print("")
+        print("")
         print("")
     else:
         print("")
-        print("Your asnwer incorrect")
+        print("Mmmm, your answe is incorrect.")
         print("")
-
+        print("If you want a hint type this.")
+        print("hint_relu_backward")
+        print("")
+        print("And check your answe as follow.")
+        print("checkReLUBackward()")
 
 def nextChapter(file_name="ch06.py"):
     with open(file_name) as next_chapter:

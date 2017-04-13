@@ -1,9 +1,6 @@
 import numpy as np
 
-hint_and_gate = ''
-hint_nand_gate = ''
-hint_or_gate = ''
-hint_xor_gate = ''
+
 
 def collect_AND(x1, x2):
     x = np.array([x1, x2])
