@@ -14,9 +14,10 @@ hint_ml_forward = """
 forword function is as follow.
 
 def forward(self, x, y):
-        self.x = x
-        self.y = y                
-        out = x * y
+    self.x = x
+    self.y = y                
+    out = x * y
+    return out
 
 So, you define the function as below.
 And check the answer as follow.
@@ -36,6 +37,21 @@ def backward(self, dout):
 And check defined answers as follow.
 checkMLBackward()
 
+"""
+
+hint_relu_forward = """
+forward function is as follow.
+
+def forward(self, x):
+    self.mask = (x <= 0)
+    out = x.copy()
+    out[self.mask] = 0
+
+    return out
+
+so, you define the function of Relu.forward .
+And check your answer as follow.
+checkReLUForward()
 """
 
 class MulLayer:
@@ -59,9 +75,35 @@ class AnsMulLayer:
         dy = dout * self.x
         return dx, dy
 
+class Relu:
+    def __init__(self):
+        self.mask = None
+
+
+class AnsRelu:
+    def __init__(self):
+        self.mask = None
+
+    def forward(self, x):
+        self.mask = (x <= 0)
+        out = x.copy()
+        out[self.mask] = 0
+
+        return out
+
+    def backward(self, dout):
+        dout[self.mask] = 0
+        dx = dout
+
+        return dx
+
+
 
 mul_layer = MulLayer()
 ans_mul_layer = AnsMulLayer()
+
+relu_layer = Relu()
+ans_relu_layer = AnsRelu()
 
 print("*****************************")
 print("")
@@ -111,8 +153,15 @@ def checkMLBackward():
         print("OK!!!")
         print("Mul layer is defined.")
         print("")
+        print("Next is ReLU layer.")
+        print("Let's define the ReLU forward functioin.")
         print("")
+        print("ReLU layer is defined as 'Relu'.")
+        print("So, you define the relu forward function as follow.")
+        print("Relu.forward = foo")
         print("")
+        print("And check your answer as follow.")
+        print("checkReLUForward()")
     else:
         print("")
         print("Result is incorrect.....")
@@ -122,6 +171,19 @@ def checkMLBackward():
         print("")
         print("And check defined answers as follow.")
         print("checkMLBackward()")
+
+def checkReLUForward():
+    chk_num = 1
+    ans_chk = ans_relu_layer.forward(chk_num)
+    chk = relu_layer.forward(chk_num)
+    if ans_chk==chk:
+        print("")
+        print("OK")
+        print("")
+    else:
+        print("")
+        print("Your asnwer incorrect")
+        print("")
 
 
 def nextChapter(file_name="ch06.py"):
