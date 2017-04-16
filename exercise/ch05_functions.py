@@ -189,8 +189,11 @@ ans_mul_layer = AnsMulLayer()
 relu_layer = Relu()
 ans_relu_layer = AnsRelu()
 
-affine_layer = Affine()
-ans_affine_layer = AnsAffine()
+hidden_size = 2
+w1 = 0.01 * np.random.randn(2, hidden_size)
+b1 = np.zeros(hidden_size)
+affine_layer = Affine(w1, b1)
+ans_affine_layer = AnsAffine(w1, b1)
 
 print("*****************************")
 print("")
@@ -312,20 +315,47 @@ def checkAffineForward():
     chk_ans = affine_layer.forward(chk_array)
     chk_correct_ans = ans_affine_layer.forward(chk_array)
     if (chk_ans==chk_correct_ans).all():
-        print("")
         print("Gooood!!")
         print("Next is Affine backward.")
         print("")
         print("So, define the backward function of affine layer")
         print("And check your answe as follow.")
-        print("checkReLUBackward()")
+        print("checkAffineBackward()")
     else:
-        print("")
         print("Ooops your answer is incorrect.")
+        print("If you want a hint type this -> ")
+        print("hint_affine_forward")
         print("")
-        print("If you want a hint type")
+        print("And check your answe as follow.")
+        print("checkAffineForward()")
+
+def checkAffineBackward():
+    chk_num = 6
+    chk_ans = affine_layer.backward(chk_num)
+    chk_correct_ans = ans_affine_layer.backward(chk_num)
+    if (chk_ans==chk_correct_ans).all:
+        print("")
+        print("Very good!!!")
+        print("Next is two layer net.")
+        print("")
+        print("Tow layer net has these functions.")
+        print("  __init__")
+        print("  predict")
+        print("  loss")
+        print("  accuracy")
+        print("  numerical_gradient")
+        print("  gradient")
         print("")
         print("")
+        print("")
+    else:
+        print("Mmm... your answer is incorrect.")
+        print("If you want a hint type this -> ")
+        print("hint_affine_backward")
+        print("")
+        print("And check your answe as follow.")
+        print("checkReLUBackward()")
+
 
 
 def nextChapter(file_name="ch06.py"):
