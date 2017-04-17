@@ -2,6 +2,7 @@ import sys, os
 sys.path.append(os.pardir)
 from layer_naive import *
 import numpy as np
+from collections import OrderedDict
 
 disp_mullayer = """
 
@@ -100,6 +101,28 @@ def backward(self, dout):
 And check your answer as follow.
 checkAffineBackward()
 """
+
+two_layer_init = """
+    def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
+        self.params = {}
+        self.params['W1'] = 'question_1'
+        self.params['b1'] = 'question_2'
+        self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size) 
+        self.params['b2'] = np.zeros(output_size)
+
+        self.layers = OrderedDict()
+        self.layers['Affine1'] = 'question_3'
+        self.layers['Relu1'] = Relu()
+        self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
+
+        self.lastLayer = SoftmaxWithLoss()
+ 
+"""
+
+ans_1 = "weight_init_std * np.random.randn(input_size, hidden_size)"
+ans_2 = "np.zeros(hidden_size)"
+ans_3 = "Affine(self.params['W1'], self.params['b1'])"
+
 class MulLayer:
     def __init__(self):
         self.x = None
@@ -346,8 +369,14 @@ def checkAffineBackward():
         print("  numerical_gradient")
         print("  gradient")
         print("")
+        print("Let's define the init.")
+        print("init function is as follow")
         print("")
+        print(two_layer_init)
         print("")
+        print("You fill in these 'questioins', and check your answer as follow.")
+        print("")
+        print("checkTLInit()")
     else:
         print("Mmm... your answer is incorrect.")
         print("If you want a hint type this -> ")
