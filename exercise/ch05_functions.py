@@ -5,7 +5,6 @@ import numpy as np
 from collections import OrderedDict
 
 disp_mullayer = """
-
 class MulLayer:
     def __init__(self):
         self.x = None
@@ -119,10 +118,6 @@ two_layer_init = """
  
 """
 
-ans_1 = "weight_init_std * np.random.randn(input_size, hidden_size)"
-ans_2 = "np.zeros(hidden_size)"
-ans_3 = "Affine(self.params['W1'], self.params['b1'])"
-
 class MulLayer:
     def __init__(self):
         self.x = None
@@ -217,6 +212,16 @@ w1 = 0.01 * np.random.randn(2, hidden_size)
 b1 = np.zeros(hidden_size)
 affine_layer = Affine(w1, b1)
 ans_affine_layer = AnsAffine(w1, b1)
+
+# tow layer net
+weight_init_std = 0.01
+input_size = 65
+hidden_size = 65
+
+ans_1 = weight_init_std * np.random.randn(input_size, hidden_size)
+ans_2 = np.zeros(hidden_size)
+ans_3 = Affine(self.params['W1'], self.params['b1'])
+
 
 print("*****************************")
 print("")
@@ -385,6 +390,15 @@ def checkAffineBackward():
         print("And check your answe as follow.")
         print("checkReLUBackward()")
 
+def checkTLInit():
+    if True:
+        print("")
+        print("")
+        print("")
+    else:
+        print("")
+        print("")
+        print("")
 
 
 def nextChapter(file_name="ch06.py"):
