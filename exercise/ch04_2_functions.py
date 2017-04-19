@@ -154,7 +154,6 @@ t_batch = t_train[batch_mask]
 #grad = net.numerical_gradient(x_batch, t_batch)
 
 ans_1 = net.gradient(x_batch, t_batch)
-#ans_2 = learning_rate * grad[0]
 ans_2 = learning_rate
 ans_3 = net.loss(x_batch, t_batch)
 

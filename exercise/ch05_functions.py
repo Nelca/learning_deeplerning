@@ -102,21 +102,42 @@ checkAffineBackward()
 """
 
 two_layer_init = """
-    def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
-        self.params = {}
-        self.params['W1'] = 'question_1'
-        self.params['b1'] = 'question_2'
-        self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size) 
-        self.params['b2'] = np.zeros(output_size)
+def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
+    self.params = {}
+    self.params['W1'] = question_1
+    self.params['b1'] = question_2
+    self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size) 
+    self.params['b2'] = np.zeros(output_size)
 
-        self.layers = OrderedDict()
-        self.layers['Affine1'] = 'question_3'
-        self.layers['Relu1'] = Relu()
-        self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
+    self.layers = OrderedDict()
+    self.layers['Affine1'] = question_3(self.params['W1'], self.params['b1'])()
+    self.layers['Relu1'] = Relu()
+    self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
 
-        self.lastLayer = SoftmaxWithLoss()
+    self.lastLayer = SoftmaxWithLoss()
  
 """
+hint_tl_init = """
+two layer init answer is as follow.
+
+question_1 = weight_init_std * np.random.randn(input_size, hidden_size)
+question_2 = np.zeros(hidden_size)
+question_3 = Affine
+
+Check your answer as follow.
+checkTLInit()
+"""
+
+two_layer_predict = """
+def predict(self, x):
+    for layer in self.layers.values():
+        x = 'question_1'
+    
+    return x
+"""
+
+ans_tl_predict_1 = "layer.forward(x)"
+
 
 class MulLayer:
     def __init__(self):
@@ -220,7 +241,7 @@ hidden_size = 65
 
 ans_1 = weight_init_std * np.random.randn(input_size, hidden_size)
 ans_2 = np.zeros(hidden_size)
-ans_3 = Affine(self.params['W1'], self.params['b1'])
+ans_3 = Affine
 
 
 print("*****************************")
@@ -391,15 +412,36 @@ def checkAffineBackward():
         print("checkReLUBackward()")
 
 def checkTLInit():
-    if True:
+    chk_ans_1 = len(ans_1) == len(question_1)
+    chk_ans_2 = (ans_2 == question_2).all
+    chk_ans_3 = ans_3 == question_3
+    if chk_ans_1 and chk_ans_2 and chk_ans_3:
         print("")
+        print("That's right!!!")
+        print("Next is predict")
         print("")
+        print(two_layer_predict)
+        print("")
+        print("You fill in these 'questioin', and check your answer as follow.")
+        print("checkTLPredict()")
+    else:
+        print("Sorry.. your answe incorrect.")
+        print("check the hint as follow")
+        print("hint_tl_init")
+        print("")
+        print("And check your answer asa follow.")
+        print("checkTLInit()")
+
+def checkTLPredict():
+    chk_1 = ans_tl_predict_1==question_1
+    if chk_1:
+        print("")
+        print("OK")
         print("")
     else:
         print("")
+        print("NG")
         print("")
-        print("")
-
 
 def nextChapter(file_name="ch06.py"):
     with open(file_name) as next_chapter:

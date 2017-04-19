@@ -22,6 +22,9 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_affine_backward":
             self.runsource("print(hint_affine_backward)")
             ri = ""
+       elif replaced_ri == "hint_tl_init":
+            self.runsource("print(hint_tl_init)")
+            ri = ""
        return ri
 
 ch05_console = CustomConsole(question_file= "./ch05_functions.py")
