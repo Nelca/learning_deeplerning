@@ -101,60 +101,6 @@ And check your answer as follow.
 checkAffineBackward()
 """
 
-two_layer_init = """
-def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
-    self.params = {}
-    self.params['W1'] = question_1
-    self.params['b1'] = question_2
-    self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size) 
-    self.params['b2'] = np.zeros(output_size)
-
-    self.layers = OrderedDict()
-    self.layers['Affine1'] = question_3(self.params['W1'], self.params['b1'])()
-    self.layers['Relu1'] = Relu()
-    self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
-
-    self.lastLayer = SoftmaxWithLoss()
- 
-"""
-hint_tl_init = """
-two layer init answer is as follow.
-
-question_1 = weight_init_std * np.random.randn(input_size, hidden_size)
-question_2 = np.zeros(hidden_size)
-question_3 = Affine
-
-Check your answer as follow.
-checkTLInit()
-"""
-
-two_layer_predict = """
-def predict(self, x):
-    for layer in self.layers.values():
-        x = 'question_1'
-    
-    return x
-"""
-hint_tl_predict = """
-predict answe is as follow.
-
-question_1 = 'layer.forward(x)'
-
-And check your answe as follow
-checkTLPredict
-"""
-
-
-two_layer_loss = """
-def loss(self, x, t):
-    y = self.predict(x)
-    return self.lastLayer.forward(y, t)
-"""
-
-
-ans_tl_predict_1 = "layer.forward(x)"
-
-
 class MulLayer:
     def __init__(self):
         self.x = None
@@ -236,11 +182,6 @@ class AnsAffine:
         dx = dx.reshape(*self.original_x_shape)
         return dx
 
-
-
-
-
-
 mul_layer = MulLayer()
 ans_mul_layer = AnsMulLayer()
 
@@ -253,16 +194,7 @@ b1 = np.zeros(hidden_size)
 affine_layer = Affine(w1, b1)
 ans_affine_layer = AnsAffine(w1, b1)
 
-# tow layer net
-weight_init_std = 0.01
-input_size = 65
-hidden_size = 65
-
-ans_1 = weight_init_std * np.random.randn(input_size, hidden_size)
-ans_2 = np.zeros(hidden_size)
-ans_3 = Affine
-
-
+##########   inital message   ##############
 print("*****************************")
 print("")
 print("This chpater is lerning backword.")
@@ -397,31 +329,16 @@ def checkAffineForward():
         print("And check your answe as follow.")
         print("checkAffineForward()")
 
-def checkAffineBackward():
+def checrAffineBackward(skip=False):
     chk_num = 6
     chk_ans = affine_layer.backward(chk_num)
     chk_correct_ans = ans_affine_layer.backward(chk_num)
-    if (chk_ans==chk_correct_ans).all:
+    if (chk_ans==chk_correct_ans).all or skip:
         print("")
         print("Very good!!!")
         print("Next is two layer net.")
-        print("")
-        print("Tow layer net has these functions.")
-        print("  __init__")
-        print("  predict")
-        print("  loss")
-        print("  accuracy")
-        print("  numerical_gradient")
-        print("  gradient")
-        print("")
-        print("Let's define the init.")
-        print("init function is as follow")
-        print("")
-        print(two_layer_init)
-        print("")
-        print("You fill in these 'questioins', and check your answer as follow.")
-        print("")
-        print("checkTLInit()")
+        nextChapter()
+        
     else:
         print("Mmm... your answer is incorrect.")
         print("If you want a hint type this -> ")
@@ -430,60 +347,8 @@ def checkAffineBackward():
         print("And check your answe as follow.")
         print("checkReLUBackward()")
 
-def checkTLInit():
-    chk_ans_1 = len(ans_1) == len(question_1)
-    chk_ans_2 = (ans_2 == question_2).all
-    chk_ans_3 = ans_3 == question_3
-    if chk_ans_1 and chk_ans_2 and chk_ans_3:
-        print("")
-        print("That's right!!!")
-        print("Next is predict")
-        print("")
-        print(two_layer_predict)
-        print("")
-        print("You fill in these 'questioin' as string, and check your answer as follow.")
-        print("checkTLPredict()")
-    else:
-        print("Sorry.. your answe incorrect.")
-        print("check the hint as follow")
-        print("hint_tl_init")
-        print("")
-        print("And check your answer asa follow.")
-        print("checkTLInit()")
 
-def checkTLPredict():
-    chk_1 = ans_tl_predict_1==question_1
-    if chk_1:
-        print("")
-        print("Good!!!")
-        print("Next step is loss function.")
-        print("")
-        print("")
-        print("")
-        print("Let's define loss function and check your answer as follow.")
-        print("checkTLLoss()")
-    else:
-        print("")
-        print("Mmm... your answer incorrect.")
-        print("")
-        print("check the hint as follow")
-        print("hint_tl_init")
-        print("")
-        print("And check your answer as follow.")
-        print("checkTLPredict()")
-
-def checkTLLoss():
-    if True:
-        print("")
-        print("")
-        print("")
-    else:
-        print("")
-        print("")
-        print("")
-
-
-def nextChapter(file_name="ch06.py"):
+def nextChapter(file_name="ch05_2.py"):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
