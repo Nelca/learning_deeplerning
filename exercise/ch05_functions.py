@@ -135,6 +135,22 @@ def predict(self, x):
     
     return x
 """
+hint_tl_predict = """
+predict answe is as follow.
+
+question_1 = 'layer.forward(x)'
+
+And check your answe as follow
+checkTLPredict
+"""
+
+
+two_layer_loss = """
+def loss(self, x, t):
+    y = self.predict(x)
+    return self.lastLayer.forward(y, t)
+"""
+
 
 ans_tl_predict_1 = "layer.forward(x)"
 
@@ -219,6 +235,9 @@ class AnsAffine:
         
         dx = dx.reshape(*self.original_x_shape)
         return dx
+
+
+
 
 
 
@@ -422,7 +441,7 @@ def checkTLInit():
         print("")
         print(two_layer_predict)
         print("")
-        print("You fill in these 'questioin', and check your answer as follow.")
+        print("You fill in these 'questioin' as string, and check your answer as follow.")
         print("checkTLPredict()")
     else:
         print("Sorry.. your answe incorrect.")
@@ -436,12 +455,33 @@ def checkTLPredict():
     chk_1 = ans_tl_predict_1==question_1
     if chk_1:
         print("")
-        print("OK")
+        print("Good!!!")
+        print("Next step is loss function.")
+        print("")
+        print("")
+        print("")
+        print("Let's define loss function and check your answer as follow.")
+        print("checkTLLoss()")
+    else:
+        print("")
+        print("Mmm... your answer incorrect.")
+        print("")
+        print("check the hint as follow")
+        print("hint_tl_init")
+        print("")
+        print("And check your answer as follow.")
+        print("checkTLPredict()")
+
+def checkTLLoss():
+    if True:
+        print("")
+        print("")
         print("")
     else:
         print("")
-        print("NG")
         print("")
+        print("")
+
 
 def nextChapter(file_name="ch06.py"):
     with open(file_name) as next_chapter:
