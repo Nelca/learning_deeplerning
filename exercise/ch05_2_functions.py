@@ -47,13 +47,11 @@ And check your answe as follow
 checkTLPredict
 """
 
-
 two_layer_loss = """
 def loss(self, x, t):
     y = self.'question_1'(x)
     return self.'question_2'.forward(y, t)
 """
-
 
 hint_tl_loss = """
 The answers is as follow.
@@ -62,8 +60,28 @@ question_1 = "predict"
 question_2 = "lastLayer"
 
 And check your answe as follow.
-
+checkTLLoss()
 """
+
+two_layer_accuracy = """
+    def accuracy(self, x, t):
+        y = self.predict(x)
+        y = question_1
+        if t.ndim != 1 : t = np.argmax(t, axis=1)
+        
+        accuracy = question_2
+        return accuracy
+"""
+hint_tl_accuracy = """
+two layer net's accuracy function answer is as follow.
+
+question_1 = np.argmax(y, axis=1)
+question_2 = np.sum(y == t) / float(x.shape[0])
+
+So, check your answer as follow.
+checkTLAccuracy()
+"""
+
 
 # tow layer net
 weight_init_std = 0.01
@@ -107,6 +125,14 @@ ans_tl_predict_1 = "layer.forward(x)"
 
 ans_tl_loss_1 = "predict"
 ans_tl_loss_2 = "lastLayer"
+
+y = np.arra([[1, 2], [3, 4]])
+t = np.arra([[1, 2], [3, 4]])
+x = np.array([1, 2, 3])
+ans_tl_accuracy_1 = np.argmax(y, axis=1)
+ans_tl_accuracy_2 = np.sum(y == t) / float(x.shape[0])
+
+
 
 print("*****************************")
 print("")
@@ -162,16 +188,28 @@ def checkTLLoss():
     chk1 = questioin_1 == ans_tl_loss_1
     chk2 = questioin_2 == ans_tl_loss_2
     if chk1 and chk2:
+        print("That's good!")
+        print("Next is accuracy.")
         print("")
-        print("OK")
+        print(two_layer_accuracy)
         print("")
+        print("Let's put your answer in 'questioni_*' ")
+        print("And check your answer as below.")
+        print("checkTLAccuracy()")
     else:
+        print("Mmmmm... your answer is incorrect.")
+        print("Check the hint as below.")
         print("")
-        print("NG")
+        print("hint_tl_loss")
         print("")
+        print("And check your answer as below.")
+        print("checkTLLoss()")
+
+def checkTLAccuracy():
+    print("chk")
 
 
-def nextChapter(file_name="ch06.py"):
+def nextChapter(file_name="ch05_3.py"):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
