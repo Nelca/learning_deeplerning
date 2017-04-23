@@ -81,7 +81,18 @@ question_2 = np.sum(y == t) / float(x.shape[0])
 So, check your answer as follow.
 checkTLAccuracy()
 """
-
+two_layer_ng = """
+def numerical_gradient(self, x, t):
+    loss_W = lambda W: self.loss(x, t)
+    
+    grads = {}
+    grads['W1'] = question_1(loss_W, self.params['W1'])
+    grads['b1'] = question_1(loss_W, self.params['b1'])
+    grads['W2'] = question_1(loss_W, self.params['W2'])
+    grads['b2'] = question_1(loss_W, self.params['b2'])
+    
+    return grads
+"""
 
 # tow layer net
 weight_init_std = 0.01
@@ -206,8 +217,36 @@ def checkTLLoss():
         print("checkTLLoss()")
 
 def checkTLAccuracy():
-    print("chk")
+    chk1_ = ans_tl_accuracy_1==question_1
+    chk2_ = ans_tl_accuracy_2==question_2
+    if chk_1 and chk_2:
+        print("")
+        print("Gooood!!!")
+        print("Next is numerical gradient.")
+        print("Numerical gradient is as follow.")
+        print("")
+        print(two_layer_ng)
+        print("")
+        print("Let's put your answer in 'questioni_*' ")
+        print("And check your answer as below.")
+        print("checkTLNG()")
+    else:
+        print("Sorry... your answer is incorrect.")
+        print("Let's check the hint as 'hint_tl_accuracy'")
+        print("")
+        print("And check your answer as follow.")
+        print("checkTLAccuracy()")
 
+def checkTLNG():
+    if True:
+        print("")
+        print("")
+        print("")
+        print("")
+    else :
+        print("")
+        print("")
+        print("")
 
 def nextChapter(file_name="ch05_3.py"):
     with open(file_name) as next_chapter:
