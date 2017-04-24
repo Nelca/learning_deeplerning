@@ -17,7 +17,6 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
-i
 ##########   inital message   ##############
 print("*****************************")
 print("")

@@ -93,6 +93,15 @@ def numerical_gradient(self, x, t):
     
     return grads
 """
+hint_tl_ng = """
+numerical gradient answer is as follow.
+
+question_1 = 'numerical_gradient'
+
+Check your answer as follow.
+checkTLNG()
+"""
+
 
 # tow layer net
 weight_init_std = 0.01
@@ -137,13 +146,13 @@ ans_tl_predict_1 = "layer.forward(x)"
 ans_tl_loss_1 = "predict"
 ans_tl_loss_2 = "lastLayer"
 
-y = np.arra([[1, 2], [3, 4]])
-t = np.arra([[1, 2], [3, 4]])
+y = np.array([[1, 2], [3, 4]])
+t = np.array([[1, 2], [3, 4]])
 x = np.array([1, 2, 3])
 ans_tl_accuracy_1 = np.argmax(y, axis=1)
 ans_tl_accuracy_2 = np.sum(y == t) / float(x.shape[0])
 
-
+ans_tl_ng_1 = 'numerical_gradient'
 
 print("*****************************")
 print("")
@@ -238,15 +247,22 @@ def checkTLAccuracy():
         print("checkTLAccuracy()")
 
 def checkTLNG():
-    if True:
+    chk_1 = ans_tl_ng_1==question_1
+    if chk_1:
+        print("That's good!!!")
+        print("Two layer net is defined.")
         print("")
-        print("")
-        print("")
-        print("")
+        print("Next is use this net.")
+        print("So, let's move on chaper 5-3!")
+        nextChapter()
     else :
+        print("Mmmm... your answer is inccorect.")
+        print("check hint as follow")
         print("")
+        print("hint_tl_ng")
         print("")
-        print("")
+        print("And check your answer as below.")
+        print("checkTLNG()")
 
 def nextChapter(file_name="ch05_3.py"):
     with open(file_name) as next_chapter:
