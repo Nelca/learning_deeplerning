@@ -7,8 +7,14 @@ class CustomConsole(cc.CustomConsole):
        if ri == "hint_network":
             self.runsource("print(hint_network)")
             ri = ""
-       elif replaced_ri == "hint_ml_backward":
-            self.runsource("print(hint_ml_backward)")
+       elif replaced_ri == "hint_epoch":
+            self.runsource("print(hint_epoch)")
+            ri = ""
+       elif replaced_ri == "hint_batch_mask":
+            self.runsource("print(hint_batch_mask)")
+            ri = ""
+       elif replaced_ri == "hint_grad":
+            self.runsource("print(hint_grad)")
             ri = ""
        return ri
 
