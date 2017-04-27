@@ -17,6 +17,7 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
+### answers ###
 
 ans_network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
 ans_iter_per_epoch = max(train_size / batch_size, 1)
@@ -26,6 +27,12 @@ x_batch = x_train[ans_batch_mask]
 t_batch = t_train[ans_batch_mask]
 ans_grad = ans_network.gradient(x_batch, t_batch)
 
+ans_loss = ans_network.loss(x_batch, t_batch)
+
+##################
+
+
+### hints ###
 hint_network = """
 The network answer is as follow.
 
@@ -59,7 +66,15 @@ grad = network.gradient(x_batch, t_batch)
 And check your answer as follow.
 checkGrad()
 """
+hint_loss = """
+loss answer is as follow.
 
+loss = network.loss(x_batch, t_batch)
+
+So, check your answer as follow.
+checkLoss()
+"""
+##################
 
 ##########   inital message   ##############
 print("*****************************")
@@ -153,15 +168,26 @@ def checkGrad():
         print("checkGrad()")
 
 def checkLoss():
-    chk_1 = True
+    chk_1 = ans_loss==loss
     if chk_1:
+        print("Tha's right!!!!")
+        print("Okay, now check the flow of predict.")
+        print("The flow as follow.")
         print("")
+        print(train_nn_all)
         print("")
+        print("Tha's all.")
+        print("So, next is lerning tips of training nural network.")
         print("")
+        nextChapter()
     else:
+        print("Mmmm. your answer in correct.")
+        print("Check the hint as follow.")
         print("")
+        print("hint_loss")
         print("")
-        print("")
+        print("And check your answer as follow.")
+        print("checkLoss()")
 
 
 def nextChapter(file_name="ch06.py"):
