@@ -1,48 +1,5 @@
 import numpy as np
 
-
-##########   inital message   ##############
-print("*****************************")
-print("")
-print("This chpater is lerning technique of neural netwok.")
-print("Lerning set is")
-print("")
-print("1.update parameters")
-print("2.weight initialize")
-print("3.batch normalization")
-print("4.regularization")
-print("5.verification of hyper parameters")
-print("")
-print("So, first step is update parameters.")
-print("first technique is 'Momentum'")
-print("Momentum is as follow")
-print("")
-print(view_momentum)
-print("")
-print("Plese fill in 'question_*'")
-print("And check your answer as follow.")
-print("checkMomentum()")
-
-
-class Momentum:
-
-    def __init__(self, lr=0.01, momentum=0.9):
-        self.lr = lr
-        self.momentum = momentum
-        self.v = None
-        
-    def update(self, params, grads):
-        if self.v is None:
-            self.v = {}
-            for key, val in params.items():                                
-                self.v[key] = np.zeros_like(val)
-                
-        for key in params.keys():
-            self.v[key] = self.momentum * self.v[key] - self.lr * grads[key] 
-            params[key] += self.v[key]
-
-
-
 view_momentum = """
 class Momentum:
 
@@ -68,12 +25,11 @@ hint_momentum = """
 momentum answers is as follow.
 
 question_1 = 'self.momentum * self.v[key] - self.lr * grads[key] '
-question_2 += 'self.v[key]'
+question_2 = 'self.v[key]'
 
 and check your answer as follow.
 checkMomentum()
 """
-
 
 view_nesterov = """
 class Nesterov:
@@ -117,9 +73,36 @@ ans_nesterov_3 = 'self.momentum * self.momentum * self.v[key]'
 ans_nesterov_4 = '(1 + self.momentum) * self.lr * grads[key]'
 
 
+##########   inital message   ##############
+print("*****************************")
+print("")
+print("This chpater is lerning technique of neural netwok.")
+print("Lerning set is")
+print("")
+print("1.update parameters")
+print("2.weight initialize")
+print("3.batch normalization")
+print("4.regularization")
+print("5.verification of hyper parameters")
+print("")
+print("So, first step is update parameters.")
+print("first technique is 'Momentum'")
+print("Momentum is as follow")
+print("")
+print(view_momentum)
+print("")
+print("Plese fill in 'question_*'")
+print("And check your answer as follow.")
+print("checkMomentum()")
+
+#############################################
+
+##########   answer check functions   ##############
+
 def checkMomentum(skip=False):
-    chk_1 = ans_momentum_1==question_1
-    chk_2 = ans_momentum_2==question_2
+       
+    chk_1 = ans_momentum_1.replace(" ", "")==question_1.replace(" ", "")
+    chk_2 = ans_momentum_2.replace(" ", "")==question_2.replace(" ", "")
     if chk_1 and chk_2:
         print("Very good!!!")
         print("Next is Nesterov.")
@@ -139,10 +122,10 @@ def checkMomentum(skip=False):
 
 
 def checkNesterov():
-    chk_1 = ans_nesterov_1==question_1
-    chk_2 = ans_nesterov_2==question_2
-    chk_3 = ans_nesterov_3==question_3
-    chk_4 = ans_nesterov_4==question_4
+    chk_1 = ans_nesterov_1.replace(" ", "")==question_1.replace(" ", "")
+    chk_2 = ans_nesterov_2.replace(" ", "")==question_2.replace(" ", "")
+    chk_3 = ans_nesterov_3.replace(" ", "")==question_3.replace(" ", "")
+    chk_4 = ans_nesterov_4.replace(" ", "")==question_4.replace(" ", "")
     if chk_1 and chk_2 and chk_3 and chk_4:
         print("Greate !!!!!")
         print("")
