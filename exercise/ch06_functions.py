@@ -63,6 +63,23 @@ question_4 = '(1 + self.momentum) * self.lr * grads[key]'
 And check your answer as follow.
 checkNesterov()
 """
+view_adagrad = """
+class AdaGrad:
+
+    def __init__(self, lr=0.01):
+        self.lr = lr
+        self.h = None
+        
+    def update(self, params, grads):
+        if self.h is None:
+            self.h = {}
+            for key, val in params.items():
+                self.h[key] = question_1
+            
+        for key in params.keys():
+            self.h[key] += question_2
+            params[key] -= question_3
+"""
 
 ans_momentum_1 = 'self.momentum * self.v[key] - self.lr * grads[key] '
 ans_momentum_2 = 'self.v[key]'
@@ -72,6 +89,9 @@ ans_nesterov_2 = 'np.zeros_like(val)'
 ans_nesterov_3 = 'self.momentum * self.momentum * self.v[key]'
 ans_nesterov_4 = '(1 + self.momentum) * self.lr * grads[key]'
 
+ans_adagrad_1 = 'np.zeros_like(val)'
+ans_adagrad_2 = 'grads[key] * grads[key]'
+ans_adagrad_3 = 'self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)'
 
 ##########   inital message   ##############
 print("*****************************")
@@ -128,8 +148,14 @@ def checkNesterov():
     chk_4 = ans_nesterov_4.replace(" ", "")==question_4.replace(" ", "")
     if chk_1 and chk_2 and chk_3 and chk_4:
         print("Greate !!!!!")
+        print("Next is AdaGrad.")
+        print("AdaGrad is as follow.")
         print("")
+        print(view_adagrad)
         print("")
+        print("Let's fill in the answer.")
+        print("And check your answer as follow.")
+        print("checkAdaGrad()")
     else :
         print("Mmmm.. your answer is incorrect.")
         print("check the hint as follow.")
@@ -138,6 +164,19 @@ def checkNesterov():
         print("")
         print("Anc check your answer as follow.")
         print("checkNesterov()")
+
+def checkAdaGrad():
+    chk_1 = ans_adagrad_1.replace(" ", "")==question_1.replace(" ", "")
+    chk_2 = ans_adagrad_2.replace(" ", "")==question_2.replace(" ", "")
+    chk_3 = ans_adagrad_3.replace(" ", "")==question_3.replace(" ", "")
+    if chk_1 and chk_2 and chk_3 :
+        print("That's greate !!")
+        print("")
+        print("")
+    else :
+        print("Sorry, your answer is not correct.")
+        print("")
+        print("")
 
 
 def nextChapter(file_name="ch07.py"):
