@@ -122,17 +122,43 @@ for i in range(hidden_layer_size):
         x = activations[i-1]
 
     w = question_1
-    # w = np.random.randn(node_num, node_num) * 0.01
-    # w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num)
-    # w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num)
-
     a = np.dot(x, w)
-
     z = question_2
+
     # z = ReLU(a)
     # z = tanh(a)
 
     activations[i] = z
+"""
+hint_wiah = """
+weight init activation histogram answer is as follow.
+
+question_1 = np.random.randn(node_num, node_num) * 1
+question_2 = sigmoid(a)
+
+And check your answer as follow.
+checkWiah()
+"""
+
+view_batch_norm = """
+grad_backprop = network.gradient(x_batch, t_batch)
+grad_numerical = network.numerical_gradient(x_batch, t_batch)
+
+for key in grad_numerical.keys():
+    diff = question_1
+    print(key + ":" + str(diff))
+"""
+
+hint_batch_norm = """
+batch normarization answer is as follow.
+
+question_1 = np.average( np.abs(grad_backprop[key] - grad_numerical[key]) )
+
+So, check your answer as follow.
+checkBatchNorm()
+"""
+view_dropout = """
+self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)
 """
 
 
@@ -162,6 +188,13 @@ node_num = 123
 a = 10
 ans_wia_1 = np.random.randn(node_num, node_num) * 1
 ans_wia_2 = sigmoid(a)
+
+
+grad_backprop = np.array([1, 2, 3])
+grad_numerical = np.array([1, 2, 3])
+ans_batch_narom = np.average( np.abs(grad_backprop[key] - grad_numerical[key]) )
+
+ans_dropout = "self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)"
 
 ##########   inital message   ##############
 print("*****************************")
@@ -265,9 +298,11 @@ def checkAdam():
         print("That's greate!!")
         print("Next is weight init activation histograrm.")
         print("")
+        print(view_weight_init_activation)
         print("")
-        print("")
-        print("")
+        print("Let's fill in the answer.")
+        print("And check your answer as follow.")
+        print("checkWiah()")
     else:
         print("Ooops!!")
         print("Your answer is incorrect.")
@@ -277,6 +312,62 @@ def checkAdam():
         print("")
         print("And check your answer as follow.")
         print("checkAdam()")
+
+def checkWiah():
+    chk_1 = ans_wia_1==questioin_1
+    chk_2 = ans_wia_2==questioin_2
+    if chk_1 and chk_2:
+        print("OK!!!!!")
+        print("Next is batch normalization.")
+        print("")
+        print(view_batch_norm)
+        print("")
+        print("Let's fill in the answer.")
+        print("And check your answer as follow.")
+        print("checkBtachNorm()")
+    else:
+        print("Mmmmm.... your answer is incorrect.")
+        print("Check the hint as follow.")
+        print("")
+        print("hint_wiah")
+        print("")
+        print("And check your answer as follow.")
+        print("checkWiah()")
+
+def checkBtachNorm():
+    if ans_batch_narom==questioin_1:
+        print("Okay!!")
+        print("Next is dorop out.")
+        print("Drop out is the training network technique.")
+        print("dropout calclatioin is as follow.")
+        print("")
+        print(view_dropout)
+        print("")
+        print("So, fill in your answer and check as follow.")
+        print("checkDropOut()")
+    else:
+        print("Ummmm.. your answer is incorrect.")
+        print("Check the hint as follow.")
+        print("")
+        print("hint_batch_norm")
+        print("")
+        print("And check your answer as follow.")
+        print("checkBtachNorm()")
+
+
+def checkDropOut():
+    chk_1 = ans_dropout == question_1
+    if chk_1:
+        print("")
+        print("")
+        print("")
+        print("")
+    else :
+        print("")
+        print("")
+        print("")
+
+
 
 def nextChapter(file_name="ch07.py"):
     with open(file_name) as next_chapter:
