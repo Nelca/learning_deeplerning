@@ -10,6 +10,12 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_nesterov":
             self.runsource("print(hint_nesterov)")
             ri = ""
+       elif replaced_ri == "hint_ada_grad":
+            self.runsource("print(hint_ada_grad)")
+            ri = ""
+       elif replaced_ri == "hint_adam":
+            self.runsource("print(hint_adam)")
+            ri = ""
        return ri
 
 ch05_console = CustomConsole(question_file= "./ch06_functions.py")
