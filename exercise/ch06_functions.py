@@ -161,7 +161,8 @@ view_dropout = """
 self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)
 """
 
-
+hint_dropout = """
+"""
 
 
 ans_momentum_1 = 'self.momentum * self.v[key] - self.lr * grads[key] '
@@ -358,14 +359,18 @@ def checkBtachNorm():
 def checkDropOut():
     chk_1 = ans_dropout == question_1
     if chk_1:
-        print("")
+        print("That's good!!")
         print("")
         print("")
         print("")
     else :
+        print("Sorry... your answer is incorrect.")
+        print("Check the hint type this.")
         print("")
+        print("hint_dropout")
         print("")
-        print("")
+        print("And check your answer as follow")
+        print("checkDropOut()")
 
 
 
