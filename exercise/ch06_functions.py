@@ -162,6 +162,12 @@ self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)
 """
 
 hint_dropout = """
+drop out answer is as follow.
+
+question_1 = "self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)"
+
+So, check your answer as follow.
+checkDropOut()
 """
 
 
@@ -193,6 +199,7 @@ ans_wia_2 = sigmoid(a)
 
 grad_backprop = np.array([1, 2, 3])
 grad_numerical = np.array([1, 2, 3])
+key = 1
 ans_batch_narom = np.average( np.abs(grad_backprop[key] - grad_numerical[key]) )
 
 ans_dropout = "self.layers['Dropout' + str(idx)] = Dropout(dropout_ration)"
@@ -360,9 +367,9 @@ def checkDropOut():
     chk_1 = ans_dropout == question_1
     if chk_1:
         print("That's good!!")
+        print("Let's move next chapter.")
         print("")
-        print("")
-        print("")
+        nextChapter()
     else :
         print("Sorry... your answer is incorrect.")
         print("Check the hint type this.")
