@@ -10,6 +10,9 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "view_im2col":
             self.runsource("print(view_im2col)")
             ri = ""
+       elif replaced_ri == "hint_conv":
+            self.runsource("print(hint_conv)")
+            ri = ""
        return ri
 
 ch07_console = CustomConsole(question_file= "./ch07_functions.py")

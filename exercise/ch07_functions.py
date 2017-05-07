@@ -31,6 +31,32 @@ question_4 = y + stride*out_h
 So, define these answers and check as follow.
 checkIm2col()
 """
+
+hint_conv = """
+Convolution forward function is as follow.
+
+def forward(self, x):
+    FN, C, FH, FW = self.W.shape
+    N, C, H, W = x.shape
+    out_h = 1 + int((H + 2*self.pad - FH) / self.stride)
+    out_w = 1 + int((W + 2*self.pad - FW) / self.stride)
+
+    col = im2col(x, FH, FW, self.stride, self.pad)
+    col_W = self.W.reshape(FN, -1).T
+
+    out = np.dot(col, col_W) + self.b
+    out = out.reshape(N, out_h, out_w, -1).transpose(0, 3, 1, 2)
+
+    self.x = x
+    self.col = col
+    self.col_W = col_W
+
+    return out
+
+So, define the function and check your answer as follow.
+checkConv()
+"""
+
 #############################################
 
 ##########   inital message   ##############
@@ -72,6 +98,72 @@ ans_im2col_3 = np.zeros((N, C, filter_h, filter_w, out_h, out_w))
 ans_im2col_4 = y + stride*out_h
 
 
+class AnsConvolution:
+    def __init__(self, W, b, stride=1, pad=0):
+        self.W = W
+        self.b = b
+        self.stride = stride
+        self.pad = pad
+        
+        # 中間データ（backward時に使用）
+        self.x = None   
+        self.col = None
+        self.col_W = None
+        
+        # 重み・バイアスパラメータの勾配
+        self.dW = None
+        self.db = None
+
+    def forward(self, x):
+        FN, C, FH, FW = self.W.shape
+        N, C, H, W = x.shape
+        out_h = 1 + int((H + 2*self.pad - FH) / self.stride)
+        out_w = 1 + int((W + 2*self.pad - FW) / self.stride)
+
+        col = im2col(x, FH, FW, self.stride, self.pad)
+        col_W = self.W.reshape(FN, -1).T
+
+        out = np.dot(col, col_W) + self.b
+        out = out.reshape(N, out_h, out_w, -1).transpose(0, 3, 1, 2)
+
+        self.x = x
+        self.col = col
+        self.col_W = col_W
+
+        return out
+
+    def backward(self, dout):
+        FN, C, FH, FW = self.W.shape
+        dout = dout.transpose(0,2,3,1).reshape(-1, FN)
+
+        self.db = np.sum(dout, axis=0)
+        self.dW = np.dot(self.col.T, dout)
+        self.dW = self.dW.transpose(1, 0).reshape(FN, C, FH, FW)
+
+        dcol = np.dot(dout, self.col_W.T)
+        dx = col2im(dcol, self.x.shape, FH, FW, self.stride, self.pad)
+
+        return dx
+
+
+class Convolution:
+    def __init__(self, W, b, stride=1, pad=0):
+        self.W = W
+        self.b = b
+        self.stride = stride
+        self.pad = pad
+        
+        # 中間データ（backward時に使用）
+        self.x = None   
+        self.col = None
+        self.col_W = None
+        
+        # 重み・バイアスパラメータの勾配
+        self.dW = None
+        self.db = None
+
+
+
 #############################################
 
 
@@ -84,10 +176,43 @@ def checkIm2col(skip=False):
     chk_4 = ans_im2col_4==question_4
     if  (chk_1 and chk_2 and chk_3 and chk_4) or skip:
         print("Very good!!!")
+        print("Next is convolution(Conv) layer.")
+        print("First of conv layer is define forward function.")
+        print("So, let's define forward as follos.")
         print("")
+        print("Convolution.forward = yourAnswerFunction")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConv()")
     else:
         print("Mmm... your answer is incorrect.")
+        print("Check the hint as follow.")
         print("")
+        print("hint_im2col")
+        print("")
+        print("And check your answer as follow.")
+        print("checkIm2col()")
+
+
+def checkConv():
+    chk_1 = (Convolution.forward(input_data)==AnsConvolution.forward(input_data)).all
+    if chk_1 :
+        print("Greate!!!!")
+        print("Your answer is correct!!!")
+        print("")
+        print("Next step is define pooling layer.")
+        print("")
+        print("")
+        print("")
+    else:
+        print("Oops, your answer seems to be wrong.")
+        print("If you need hint, type this.")
+        print("")
+        print("hint_conv")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConv()")
+
 
 #############################################
 
