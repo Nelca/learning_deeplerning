@@ -32,7 +32,7 @@ So, define these answers and check as follow.
 checkIm2col()
 """
 
-hint_conv = """
+hint_conv_forward = """
 Convolution forward function is as follow.
 
 def forward(self, x):
@@ -54,7 +54,32 @@ def forward(self, x):
     return out
 
 So, define the function and check your answer as follow.
-checkConv()
+
+Convolution.forward = forward
+
+checkConvForward()
+"""
+hint_conv_backward = """
+convolution backward is as follow.
+
+def backward(self, dout):
+    FN, C, FH, FW = self.W.shape
+    dout = dout.transpose(0,2,3,1).reshape(-1, FN)
+
+    self.db = np.sum(dout, axis=0)
+    self.dW = np.dot(self.col.T, dout)
+    self.dW = self.dW.transpose(1, 0).reshape(FN, C, FH, FW)
+
+    dcol = np.dot(dout, self.col_W.T)
+    dx = col2im(dcol, self.x.shape, FH, FW, self.stride, self.pad)
+
+    return dx
+
+Define the answer as follow.
+Convolution.backward = yourAnswerFunction
+
+And check the answer as follow.
+checkConvBackward()
 """
 
 #############################################
@@ -183,7 +208,7 @@ def checkIm2col(skip=False):
         print("Convolution.forward = yourAnswerFunction")
         print("")
         print("And check your answer as follow.")
-        print("checkConv()")
+        print("checkConvForward()")
     else:
         print("Mmm... your answer is incorrect.")
         print("Check the hint as follow.")
@@ -193,25 +218,50 @@ def checkIm2col(skip=False):
         print("And check your answer as follow.")
         print("checkIm2col()")
 
-
-def checkConv():
+def checkConvForward(skip=False):
     chk_1 = (Convolution.forward(input_data)==AnsConvolution.forward(input_data)).all
-    if chk_1 :
+    if chk_1 or skip :
         print("Greate!!!!")
         print("Your answer is correct!!!")
         print("")
-        print("Next step is define pooling layer.")
+        print("Next step is define convolution backward.")
         print("")
+        print("Convolution.backward = yourAnswerFunction")
         print("")
-        print("")
+        print("And check your answer as follow.")
+        print("checkConvBackward()")
     else:
         print("Oops, your answer seems to be wrong.")
         print("If you need hint, type this.")
         print("")
-        print("hint_conv")
+        print("hint_conv_forward")
         print("")
         print("And check your answer as follow.")
-        print("checkConv()")
+        print("checkConvForward()")
+
+
+def checkConvBackward(skip=False):
+    dout = 10
+    chk_1 = (Convolution.backward(dout)==AnsConvolution.backward(dout)).all
+    if chk_1 or skip :
+        print("Greate!!!!")
+        print("Your answer is correct!!!")
+        print("")
+        print("Next step is define the pooling forward.")
+        print("Like as follow.")
+        print("")
+        print("Pooling.forward = yourDefinedFunction")
+        print("")
+        print("And check your answer as follow.")
+        print("checkPoolingForward()")
+    else:
+        print("Oops, your answer seems to be wrong.")
+        print("If you need hint, type this.")
+        print("")
+        print("hint_conv_backward")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvBackward()")
 
 
 #############################################

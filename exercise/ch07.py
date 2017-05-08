@@ -10,8 +10,11 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "view_im2col":
             self.runsource("print(view_im2col)")
             ri = ""
-       elif replaced_ri == "hint_conv":
-            self.runsource("print(hint_conv)")
+       elif replaced_ri == "hint_conv_forward":
+            self.runsource("print(hint_conv_forward)")
+            ri = ""
+       elif replaced_ri == "hint_conv_backward":
+            self.runsource("print(hint_conv_backward)")
             ri = ""
        return ri
 
