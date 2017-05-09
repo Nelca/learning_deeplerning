@@ -82,6 +82,57 @@ And check the answer as follow.
 checkConvBackward()
 """
 
+hint_pooling_forward = """
+pooling forward is as follow.
+
+def forward(self, x):
+    N, C, H, W = x.shape
+    out_h = int(1 + (H - self.pool_h) / self.stride)
+    out_w = int(1 + (W - self.pool_w) / self.stride)
+
+    col = im2col(x, self.pool_h, self.pool_w, self.stride, self.pad)
+    col = col.reshape(-1, self.pool_h*self.pool_w)
+
+    arg_max = np.argmax(col, axis=1)
+    out = np.max(col, axis=1)
+    out = out.reshape(N, out_h, out_w, C).transpose(0, 3, 1, 2)
+
+    self.x = x
+    self.arg_max = arg_max
+
+    return out
+
+So, define the function and subsutitute as follow.
+Pooling.forward = forward
+
+And check your answer as follow.
+checkPoolingForward()
+"""
+
+hint_pooling_backward = """
+pooling backward is as follow.
+
+def backward(self, dout):
+    dout = dout.transpose(0, 2, 3, 1)
+    
+    pool_size = self.pool_h * self.pool_w
+    dmax = np.zeros((dout.size, pool_size))
+    dmax[np.arange(self.arg_max.size), self.arg_max.flatten()] = dout.flatten()
+    dmax = dmax.reshape(dout.shape + (pool_size,)) 
+    
+    dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2], -1)
+    dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
+    
+    return dx
+
+So, define the function and subsutitute as follow.
+Pooling.backward = backward
+
+And check your answer as follow.
+checkPoolingBackward()
+"""
+
+
 #############################################
 
 ##########   inital message   ##############
@@ -187,6 +238,55 @@ class Convolution:
         self.dW = None
         self.db = None
 
+class AnsPooling:
+    def __init__(self, pool_h, pool_w, stride=1, pad=0):
+        self.pool_h = pool_h
+        self.pool_w = pool_w
+        self.stride = stride
+        self.pad = pad
+        
+        self.x = None
+        self.arg_max = None
+
+    def forward(self, x):
+        N, C, H, W = x.shape
+        out_h = int(1 + (H - self.pool_h) / self.stride)
+        out_w = int(1 + (W - self.pool_w) / self.stride)
+
+        col = im2col(x, self.pool_h, self.pool_w, self.stride, self.pad)
+        col = col.reshape(-1, self.pool_h*self.pool_w)
+
+        arg_max = np.argmax(col, axis=1)
+        out = np.max(col, axis=1)
+        out = out.reshape(N, out_h, out_w, C).transpose(0, 3, 1, 2)
+
+        self.x = x
+        self.arg_max = arg_max
+
+        return out
+
+    def backward(self, dout):
+        dout = dout.transpose(0, 2, 3, 1)
+        
+        pool_size = self.pool_h * self.pool_w
+        dmax = np.zeros((dout.size, pool_size))
+        dmax[np.arange(self.arg_max.size), self.arg_max.flatten()] = dout.flatten()
+        dmax = dmax.reshape(dout.shape + (pool_size,)) 
+        
+        dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2], -1)
+        dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
+        
+        return dx
+
+class Pooling:
+    def __init__(self, pool_h, pool_w, stride=1, pad=0):
+        self.pool_h = pool_h
+        self.pool_w = pool_w
+        self.stride = stride
+        self.pad = pad
+        
+        self.x = None
+        self.arg_max = None
 
 
 #############################################
@@ -262,6 +362,46 @@ def checkConvBackward(skip=False):
         print("")
         print("And check your answer as follow.")
         print("checkConvBackward()")
+
+def checkPoolingForward():
+    chk_1 = (Pooling.forward(input_data)==AnsPooling.forward(input_data).all
+    if chk_1:
+        print("Cool!!")
+        print("Next is pooling backward.")
+        print("")
+        print("Pooling.backward = yourDefinedFunction")
+        print("")
+        print("And check your answer as follow.")
+        print("checkPoolingBackward()")
+    else:
+        print("Mmmm.. your answer is incorrect.")
+        print("Check the hint as follow")
+        print("")
+        print("hint_pooling_forward")
+        print("")
+        print("And check your answer as follow.")
+        print("checkPoolingForward()")
+
+def checkPoolingBackward(skip=False):
+    dout = 10
+    chk_1 = (Pooling.backward(dout)==AnsPooling.backward(dout)).all
+    if chk_1 or skip :
+        print("Greate!!!!")
+        print("Your answer is correct!!!")
+        print("")
+        print("Next step is implementation of CNN.")
+        print("")
+        print("")
+        print("")
+        print("")
+    else:
+        print("Oops, your answer seems to be wrong.")
+        print("If you need hint, type this.")
+        print("")
+        print("hint_pooling_backward")
+        print("")
+        print("And check your answer as follow.")
+        print("checkPoolingBackward()")
 
 
 #############################################
