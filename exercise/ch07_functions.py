@@ -391,9 +391,7 @@ def checkPoolingBackward(skip=False):
         print("")
         print("Next step is implementation of CNN.")
         print("")
-        print("")
-        print("")
-        print("")
+        nextChapter()
     else:
         print("Oops, your answer seems to be wrong.")
         print("If you need hint, type this.")
@@ -408,7 +406,7 @@ def checkPoolingBackward(skip=False):
 
 
 ##########   nest chapter function   ##############
-def nextChapter(file_name="ch08.py"):
+def nextChapter(file_name="ch07_2.py"):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
