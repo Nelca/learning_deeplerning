@@ -4,8 +4,11 @@ import customconsole as cc
 class CustomConsole(cc.CustomConsole):
     def check_input(self, ri):
        replaced_ri = ri.replace(" ", "")
-       if ri == "hint_cnn_init":
-            self.runsource("print(hint_cnn_init)")
+       if ri == "hint_cnn_init_1":
+            self.runsource("print(hint_cnn_init_1)")
+            ri = ""
+       elif replaced_ri == "hint_cnn_predict":
+            self.runsource("print(hint_cnn_predict)")
             ri = ""
        elif replaced_ri == "hint_cnn_predict":
             self.runsource("print(hint_cnn_predict)")
