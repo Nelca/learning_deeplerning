@@ -7,11 +7,17 @@ class CustomConsole(cc.CustomConsole):
        if ri == "hint_cnn_init_1":
             self.runsource("print(hint_cnn_init_1)")
             ri = ""
-       elif replaced_ri == "hint_cnn_predict":
-            self.runsource("print(hint_cnn_predict)")
+       elif replaced_ri == "hint_cnn_init_2":
+            self.runsource("print(hint_cnn_init_2)")
+            ri = ""
+       elif replaced_ri == "hint_cnn_init_3":
+            self.runsource("print(hint_cnn_init_3)")
             ri = ""
        elif replaced_ri == "hint_cnn_predict":
             self.runsource("print(hint_cnn_predict)")
+            ri = ""
+       elif replaced_ri == "hint_cnn_loss":
+            self.runsource("print(hint_cnn_loss)")
             ri = ""
        return ri
 
