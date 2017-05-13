@@ -19,6 +19,9 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_cnn_loss":
             self.runsource("print(hint_cnn_loss)")
             ri = ""
+       elif replaced_ri == "hint_cnn_accuracy":
+            self.runsource("print(hint_cnn_accuracy)")
+            ri = ""
        return ri
 
 ch07_2_console = CustomConsole(question_file= "./ch07_2_functions.py")

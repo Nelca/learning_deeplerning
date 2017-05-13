@@ -98,9 +98,51 @@ def loss(self, x, t):
 So, define the answer and check your answer as follow.
 checkConvLoss()
 """
+hint_cnn_accuracy = """
+accuracy function is as follow.
+
+def accuracy(self, x, t, batch_size=100):
+    if t.ndim != 1 : t = np.argmax(t, axis=1)
+    
+    acc = 0.0
+    
+    for i in range(int(x.shape[0] / batch_size)):
+        tx = x[i*batch_size:(i+1)*batch_size]
+        tt = t[i*batch_size:(i+1)*batch_size]
+        y = self.predict(tx)
+        y = np.argmax(y, axis=1)
+        acc += np.sum(y == tt) 
+    
+    return acc / x.shape[0]
+
+and check your answer as follow.
+checkConvAccuracy()
+"""
 
 
 
+hint_cnn_ng = """
+convolution numerical gradient function is as follow.
+
+def numerical_gradient(self, x, t):
+    loss_w = lambda w: self.loss(x, t)
+    grads = {}
+    for idx in (1, 2, 3):
+        grads['W' + str(idx)] = numerical_gradient(loss_w, self.params['W' + str(idx)])
+        grads['b' + str(idx)] = numerical_gradient(loss_w, self.params['b' + str(idx)])
+
+    return grads
+
+
+So, define the answer and check as follow.
+checkConvNuGrad()
+"""
+
+
+hint_cnn_save_params = """
+
+
+"""
 
 #############################################
 
@@ -268,11 +310,10 @@ def checkConvLoss():
         print("Next is accuracy.")
         print("Define the accuracy function and insert as follow.")
         print("")
-        print("SimpleConvNet.predict = yourAnswer")
+        print("SimpleConvNet.accuracy = yourAnswer")
         print("")
         print("And check your answer as follow.")
-        print("checkConvLoss()")
-        print("")
+        print("checkConvAccuracy()")
         print("")
     else:
         print("Ooops your answer is incorrect.")
@@ -282,6 +323,60 @@ def checkConvLoss():
         print("")
         print("And check your answer as follow.")
         print("checkConvLoss()")
+
+def checkConvAccuracy():
+    chk_1 = AnsSimpleConvNet.accuracy==SimpleConvNet.accuracy
+    if chk_1 :
+        print("Greate!!!")
+        print("Next is numerical gradient.")
+        print("Define the numerical_gradient function and insert as follow.")
+        print("")
+        print("SimpleConvNet.numerical_gradient = yourAnswer")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvNuGrad()")
+    else:
+        print("Ooops your answer is incorrect.")
+        print("Check the hint as follow")
+        print("")
+        print("hint_cnn_accuracy")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvLoss()")
+
+def checkConvNuGrad():
+    chk_1 = AnsSimpleConvNet.numerical_gradient==SimpleConvNet.numerical_gradient
+    if chk_1 :
+        print("Greate!!!")
+        print("Next is save params.")
+        print("Define the save params function and insert as follow.")
+        print("")
+        print("SimpleConvNet.save_params = yourAnswer")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvSP()")
+    else:
+        print("Mmmmm.. your answer is incorrect.")
+        print("Check the hint as follow")
+        print("")
+        print("hint_cnn_ng")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvNuGrad()")
+
+def checkConvSP():
+    chk_1 = AnsSimpleConvNet.save_params==SimpleConvNet.save_params
+    if chk_1:
+        print("Good!!!")
+        print("")
+        print("")
+        print("")
+    else:
+        print("Ooops, your answer is incorrect")
+        print("")
+        print("")
+        print("")
+
 
 
 
