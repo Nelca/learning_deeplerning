@@ -368,16 +368,34 @@ def checkConvSP():
     chk_1 = AnsSimpleConvNet.save_params==SimpleConvNet.save_params
     if chk_1:
         print("Good!!!")
+        print("next is save params")
+        print("")
+        print("So, difine the save param function.")
+        print("And insert the simple net.")
+        print("")
+        print("SimpleConvNet.save_params = yourAnswer")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvSaveParam()")
+    else:
+        print("Ooops, your answer is incorrect")
+        print("")
+        print("hint_cnn_save_params")
+        print("")
+        print("And check your answer as follow.")
+        print("checkConvSP()")
+
+def checkConvSaveParam():
+    chk_1 = AnsSimpleConvNet.save_params==SimpleConvNet.save_params
+    if chk_1:
+        print("")
+        print("")
         print("")
         print("")
         print("")
     else:
-        print("Ooops, your answer is incorrect")
         print("")
         print("")
-        print("")
-
-
 
 
 #############################################
