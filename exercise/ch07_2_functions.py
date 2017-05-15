@@ -1,3 +1,8 @@
+import sys, os
+sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+from common.layers import *
+from common.gradient import numerical_gradient
+
 import numpy as np
 import ch07_2_answers
 
