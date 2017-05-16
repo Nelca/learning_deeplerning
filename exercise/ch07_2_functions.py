@@ -145,9 +145,44 @@ checkConvNuGrad()
 
 
 hint_cnn_save_params = """
+save param function is as follow.
 
+def save_params(self, file_name="params.pkl"):
+    params = {}
+    for key, val in self.params.items():
+        params[key] = val
+    with open(file_name, 'wb') as f:
+        pickle.dump(params, f)
 
+So, define the function and assign the function as follow.
+SimpleConvNet.save_params = save_params
+
+And check your answer as follow.
+checkConvSP()
 """
+
+hint_cnn_load_param = """
+load param function is as follow.
+
+def load_params(self, file_name="params.pkl"):
+    with open(file_name, 'rb') as f:
+        params = pickle.load(f)
+    for key, val in params.items():
+        self.params[key] = val
+
+        for i, key in enumerate(['Conv1', 'Affine1', 'Affine2']):
+            self.layers[key].W = self.params['W' + str(i+1)]
+            self.layers[key].b = self.params['b' + str(i+1)]
+
+
+So, define the function and assign the function as follow.
+SimpleConvNet.load_params = load_params
+
+And check your answer as follow.
+checkConvLP()
+"""
+
+
 
 #############################################
 
@@ -198,12 +233,12 @@ ans_conv_init2_4 = np.zeros(hidden_size)
 ans_conv_init2_5 = weight_init_std * np.random.randn(hidden_size, output_size)
 ans_conv_init2_6 = np.zeros(output_size)
 
-ans_conv_init3_1 = Convolution(self.params['W1'], self.params['b1'], conv_param['stride'], conv_param['pad'])
+ans_conv_init3_1 = "Convolution(self.params['W1'], self.params['b1'], conv_param['stride'], conv_param['pad'])"
 ans_conv_init3_2 = Relu()
 ans_conv_init3_3 = Pooling(pool_h=2, pool_w=2, stride=2)
-ans_conv_init3_4 = Affine(self.params['W2'], self.params['b2'])
+ans_conv_init3_4 = "Affine(self.params['W2'], self.params['b2'])"
 ans_conv_init3_5 = Relu()
-ans_conv_init3_6 = Affine(self.params['W3'], self.params['b3'])
+ans_conv_init3_6 = "Affine(self.params['W3'], self.params['b3'])"
 
 #############################################
 
@@ -373,15 +408,15 @@ def checkConvSP():
     chk_1 = AnsSimpleConvNet.save_params==SimpleConvNet.save_params
     if chk_1:
         print("Good!!!")
-        print("next is save params")
+        print("next is load params")
         print("")
-        print("So, difine the save param function.")
+        print("So, difine the load param function.")
         print("And insert the simple net.")
         print("")
-        print("SimpleConvNet.save_params = yourAnswer")
+        print("SimpleConvNet.load_params = yourAnswer")
         print("")
         print("And check your answer as follow.")
-        print("checkConvSaveParam()")
+        print("checkConvLP()")
     else:
         print("Ooops, your answer is incorrect")
         print("")
@@ -390,17 +425,21 @@ def checkConvSP():
         print("And check your answer as follow.")
         print("checkConvSP()")
 
-def checkConvSaveParam():
-    chk_1 = AnsSimpleConvNet.save_params==SimpleConvNet.save_params
+def checkConvLP():
+    chk_1 = AnsSimpleConvNet.load_params==SimpleConvNet.load_params
     if chk_1:
-        print("")
-        print("")
-        print("")
-        print("")
-        print("")
+        print("Goood!!!")
+        print("Now, simple net is defined.")
+        print("So, this chapter is the end")
+        nextChapter()
     else:
+        print("Ooops, your answer is incorrect.")
+        print("Check the hint as follow.")
         print("")
+        print("hint_cnn_load_param")
         print("")
+        print("And check your answer as follow.")
+        print("checkConvLP()")
 
 
 #############################################

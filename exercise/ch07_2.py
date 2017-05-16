@@ -25,6 +25,12 @@ class CustomConsole(cc.CustomConsole):
        elif replaced_ri == "hint_cnn_ng":
             self.runsource("print(hint_cnn_ng)")
             ri = ""
+       elif replaced_ri == "hint_cnn_save_params":
+            self.runsource("print(hint_cnn_save_params)")
+            ri = ""
+       elif replaced_ri == "hint_cnn_load_param":
+            self.runsource("print(hint_cnn_load_param)")
+            ri = ""
        return ri
 
 ch07_2_console = CustomConsole(question_file= "./ch07_2_functions.py")
