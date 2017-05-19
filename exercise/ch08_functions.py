@@ -1,4 +1,10 @@
+import sys, os
+sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
+import matplotlib.pyplot as plt
+from deep_convnet import DeepConvNet
+from dataset.mnist import load_mnist
+
 
 ##########   questions and hints   ##############
 view_predict = """
@@ -27,27 +33,39 @@ checkDCNPredict()
 view_gradient = """
 def gradient(self, x, t):
     # forward
-    self.loss(x, t)
+    question_1
 
     # backward
     dout = 1
-    dout = self.last_layer.backward(dout)
+    dout = question_2
 
     tmp_layers = self.layers.copy()
-    tmp_layers.reverse()
+    question_3
     for layer in tmp_layers:
-        dout = layer.backward(dout)
+        dout = question_4
 
     # configulation
     grads = {}
     for i, layer_idx in enumerate((0, 2, 5, 7, 10, 12, 15, 18)):
-        grads['W' + str(i+1)] = self.layers[layer_idx].dW
-        grads['b' + str(i+1)] = self.layers[layer_idx].db
+        grads['W' + str(i+1)] = question_5
+        grads['b' + str(i+1)] = question_6
 
     return grads
 """
 
+hint_gradient = """
+gradient answers is as follow.
 
+question_1 = 'self.loss(x, t)'
+question_2 = 'self.last_layer.backward(dout)'
+question_3 = 'tmp_layers.reverse()'
+question_4 = 'layer.backward(dout)'
+question_5 = 'self.layers[layer_idx].dW'
+question_6 = 'self.layers[layer_idx].db'
+
+So, define the answer and check as follow.
+checkDCNGradient()
+"""
 
 #############################################
 
@@ -78,6 +96,14 @@ ans_predict_1 = isinstance(layer, Dropout)
 ans_predict_2 = layer.forward(x, train_flg)
 ans_predict_3 = layer.forward(x)
 
+ans_grad_1 = 'self.loss(x, t)'
+ans_grad_2 = 'self.last_layer.backward(dout)'
+ans_grad_3 = 'tmp_layers.reverse()'
+ans_grad_4 = 'layer.backward(dout)'
+ans_grad_5 = 'self.layers[layer_idx].dW'
+ans_grad_6 = 'self.layers[layer_idx].db'
+
+
 #############################################
 
 
@@ -107,15 +133,49 @@ def checkDCNPredict():
 
 
 def checkDCNGradient():
-    chk_1 = 
-    if chk_1 :
+    chk_1 = ans_grad_1==question_1
+    chk_2 = ans_grad_2==question_2
+    chk_3 = ans_grad_3==question_3
+    chk_4 = ans_grad_4==question_4
+    chk_5 = ans_grad_5==question_5
+    chk_6 = ans_grad_6==question_6
+    if chk_1 and chk_2 and chk_3 and chk_4 and chk_5 and chk_6 :
+        print("That's greate!!!!!")
+        print("Next is use the Deep Convolutional Network")
         print("")
+        print("First of all define as 'network'")
+        print("and do the load_params function.")
         print("")
-        print("")
+        print("So, check your answer as follow,")
+        print("checkDCN()")
     else:
+        print("Ooops,  your answer is incorrect.")
+        print("Check the hint as follow.")
         print("")
+        print("hint_gradient")
         print("")
+        print("And check your answer as follow.")
+        print("checkDCNGradient()")
+
+
+def checkDCN():
+    chk_1 = True
+    if chk_1:
+        print("That's Greaate!!!!")
+        print("Next is predict.")
+        print("Predict is on loop as follow.")
         print("")
+        print("So, define the for loop and define acc.")
+        print("If you want a hint type this.")
+        print("hint_dcn_loop")
+        print("")
+        print("And check your answer as follow.")
+        print("checkDCNLoop(acc)")
+    else:
+        print("Mmmmmm,,,, your answer is incorrect")
+        print("Check the hint as follow.")
+        print("")
+        print("hint_dcn")
         print("")
         print("")
         print("")
@@ -125,7 +185,7 @@ def checkDCNGradient():
 
 
 ##########   nest chapter function   ##############
-def nextChapter(file_name="ch07_2.py"):
+def nextChapter(file_name=""):
     with open(file_name) as next_chapter:
         next_code = next_chapter.read()
         exec(next_code)
