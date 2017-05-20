@@ -1,7 +1,6 @@
 import sys, os
 sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
-import matplotlib.pyplot as plt
 from deep_convnet import DeepConvNet
 from dataset.mnist import load_mnist
 
@@ -66,6 +65,41 @@ question_6 = 'self.layers[layer_idx].db'
 So, define the answer and check as follow.
 checkDCNGradient()
 """
+hint_dcn = """
+Deep conv net initialize answer is as follow.
+
+network = DeepConvNet()
+network.load_params("deep_convnet_params.pkl")
+
+and check your answer as follow.
+checkDCN()
+"""
+view_loop = """
+acc = 0.0
+batch_size = 100
+
+for i in range(int(x_test.shape[0] / batch_size)):
+    tx = x_test[i*batch_size:(i+1)*batch_size]
+    tt = t_test[i*batch_size:(i+1)*batch_size]
+    y = question_1
+    y = np.argmax(y, axis=1)
+    classified_ids.append(y)
+    acc += question_2
+    
+acc = question_3
+"""
+hint_dcn_loop = """
+loop answer is as follow.
+
+question_1 = network.predict(tx, train_flg=False)
+question_2 = np.sum(y == tt)
+question_3 = acc / x_test.shape[0]
+
+So, define the answer and check as follow.
+checkDCNLoop()
+"""
+
+
 
 #############################################
 
@@ -102,6 +136,25 @@ ans_grad_3 = 'tmp_layers.reverse()'
 ans_grad_4 = 'layer.backward(dout)'
 ans_grad_5 = 'self.layers[layer_idx].dW'
 ans_grad_6 = 'self.layers[layer_idx].db'
+
+
+(x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
+classified_ids = []
+acc = 0.0
+batch_size = 100
+
+network = DeepConvNet()
+network.load_params("deep_convnet_params.pkl")
+tx = x_test[0*batch_size:(0+1)*batch_size]
+tt = t_test[0*batch_size:(0+1)*batch_size]
+y = network.predict(tx, train_flg=False)
+y = np.argmax(y, axis=1)
+classified_ids.append(y)
+acc += np.sum(y == tt)
+ 
+ans_loop_1 = network.predict(tx, train_flg=False)
+ans_loop_2 = np.sum(y == tt)
+ans_loop_3 = acc / x_test.shape[0]
 
 
 #############################################
@@ -144,7 +197,7 @@ def checkDCNGradient():
         print("Next is use the Deep Convolutional Network")
         print("")
         print("First of all define as 'network'")
-        print("and do the load_params function.")
+        print("and load deep_convnet_params.pkl_params.")
         print("")
         print("So, check your answer as follow,")
         print("checkDCN()")
@@ -165,21 +218,43 @@ def checkDCN():
         print("Next is predict.")
         print("Predict is on loop as follow.")
         print("")
+        print(view_loop)
+        print("")
         print("So, define the for loop and define acc.")
         print("If you want a hint type this.")
+        print("")
         print("hint_dcn_loop")
         print("")
         print("And check your answer as follow.")
-        print("checkDCNLoop(acc)")
+        print("checkDCNLoop()")
     else:
         print("Mmmmmm,,,, your answer is incorrect")
         print("Check the hint as follow.")
         print("")
         print("hint_dcn")
         print("")
-        print("")
-        print("")
+        print("And check your answer as follow.")
+        print("checkDCN()")
 
+def checkDCNLoop():
+    chk_1 = ans_loop_1==question_1
+    chk_2 = ans_loop_2==question_2
+    chk_3 = ans_loop_3==question_3
+    if chk_1 and chk_2 and chk_3:
+        print("Goood!!")
+        print("Now calculated the accuracy.")
+        print("So, check the accuracy.")
+        print("")
+        print("")
+    else:
+        print("Mmmmmm... your answer is incorrect.")
+        print("If you want a hint type this.")
+        print("")
+        print("hint_dcn_loop")
+        print("")
+        print("And check your answer as follow.")
+        print("checkDCNLoop()")
+ 
 
 #############################################
 
