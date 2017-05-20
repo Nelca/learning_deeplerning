@@ -3,6 +3,8 @@ sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポ�
 import numpy as np
 from deep_convnet import DeepConvNet
 from dataset.mnist import load_mnist
+from common.layers import *
+
 
 
 ##########   questions and hints   ##############
@@ -126,6 +128,11 @@ print("checkDCNPredict")
 
 ##########   answers   ##############
 
+network = DeepConvNet()
+layer = network.layers[0]
+x = np.random.randn(2, 3)
+train_flg = False
+
 ans_predict_1 = isinstance(layer, Dropout)
 ans_predict_2 = layer.forward(x, train_flg)
 ans_predict_3 = layer.forward(x)
@@ -143,7 +150,6 @@ classified_ids = []
 acc = 0.0
 batch_size = 100
 
-network = DeepConvNet()
 network.load_params("deep_convnet_params.pkl")
 tx = x_test[0*batch_size:(0+1)*batch_size]
 tt = t_test[0*batch_size:(0+1)*batch_size]
@@ -244,8 +250,6 @@ def checkDCNLoop():
         print("Goood!!")
         print("Now calculated the accuracy.")
         print("So, check the accuracy.")
-        print("")
-        print("")
     else:
         print("Mmmmmm... your answer is incorrect.")
         print("If you want a hint type this.")
