@@ -9,29 +9,16 @@ import pdb
 
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
 
+chk_x = np.array([x_test[0]])
+chk_t = t_test[0]
 pdb.set_trace()
 
 network = DeepConvNet()
 network.load_params("deep_convnet_params.pkl")
+y = network.predict(chk_x, train_flg=False)
+y = np.argmax(y, axis=1)
+print("predicted chk_x label")
+print(y)
+print("correct chk_x label")
+print(chk_t)
 
-print("calculating test accuracy ... ")
-#sampled = 1000
-#x_test = x_test[:sampled]
-#t_test = t_test[:sampled]
-
-classified_ids = []
-
-acc = 0.0
-batch_size = 100
-
-for i in range(int(x_test.shape[0] / batch_size)):
-    tx = x_test[i*batch_size:(i+1)*batch_size]
-    tt = t_test[i*batch_size:(i+1)*batch_size]
-    y = network.predict(tx, train_flg=False)
-    print("predicting... " + str(i))
-    y = np.argmax(y, axis=1)
-    classified_ids.append(y)
-    acc += np.sum(y == tt)
-    
-acc = acc / x_test.shape[0]
-print("test accuracy:" + str(acc))
