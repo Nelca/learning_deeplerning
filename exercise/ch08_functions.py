@@ -130,11 +130,16 @@ print("checkDCNPredict")
 
 network = DeepConvNet()
 layer = network.layers[0]
-x = np.random.randn(2, 3)
+x = np.random.randn(2, 3, 4, 5)
 train_flg = False
 
 ans_predict_1 = isinstance(layer, Dropout)
-ans_predict_2 = layer.forward(x, train_flg)
+
+if isinstance(layer, Dropout):
+    ans_predict_2 = layer.forward(x, train_flg)
+else:
+    ans_predict_2 = layer.forward(x)
+
 ans_predict_3 = layer.forward(x)
 
 ans_grad_1 = 'self.loss(x, t)'

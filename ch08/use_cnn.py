@@ -4,14 +4,12 @@ sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポ�
 import numpy as np
 from deep_convnet import DeepConvNet
 from dataset.mnist import load_mnist
-import pdb
 
-
+print("starting...")
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
 
 chk_x = np.array([x_test[0]])
 chk_t = t_test[0]
-pdb.set_trace()
 
 network = DeepConvNet()
 network.load_params("deep_convnet_params.pkl")
