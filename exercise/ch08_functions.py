@@ -134,13 +134,8 @@ x = np.random.randn(2, 3, 4, 5)
 train_flg = False
 
 ans_predict_1 = isinstance(layer, Dropout)
-
-if isinstance(layer, Dropout):
-    ans_predict_2 = layer.forward(x, train_flg)
-else:
-    ans_predict_2 = layer.forward(x)
-
-ans_predict_3 = layer.forward(x)
+ans_predict_2 = 'layer.forward(x, train_flg)'
+ans_predict_3 = 'layer.forward(x)'
 
 ans_grad_1 = 'self.loss(x, t)'
 ans_grad_2 = 'self.last_layer.backward(dout)'
@@ -197,7 +192,8 @@ def checkDCNPredict():
 
 
 def checkDCNGradient():
-    chk_1 = ans_grad_1==question_1
+    
+    chk_1 = ans_grad_1==question_1.replace(" ", "")
     chk_2 = ans_grad_2==question_2
     chk_3 = ans_grad_3==question_3
     chk_4 = ans_grad_4==question_4
